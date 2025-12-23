@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Office Real Estate CRM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>CRM HOME</h2>
+  <ul class="tree">
+    <li><span>Dashboard</span></li>
+
+    <li>
+      <span>Leads</span>
+      <ul>
+        <li onclick="loadPage('Add Lead')">Add Lead</li>
+        <li onclick="loadPage('View Leads')">View Leads</li>
+      </ul>
+    </li>
+
+    <li>
+      <span>Customers</span>
+      <ul>
+        <li onclick="loadPage('Add Customer')">Add Customer</li>
+        <li onclick="loadPage('Customer List')">Customer List</li>
+      </ul>
+    </li>
+
+    <li>
+      <span>Payments</span>
+      <ul>
+        <li onclick="loadPage('Receipts')">Receipts</li>
+        <li onclick="loadPage('Outstanding')">Outstanding</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="content" id="content">
+  <h1>CRM Home Dashboard is running successfully 🚀</h1>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
