@@ -1,13 +1,10 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return """
-    <h2>Office Real Estate CRM</h2>
-    <p>CRM Home Dashboard is running successfully 🚀</p>
-    """
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run()
