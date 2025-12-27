@@ -2,6 +2,12 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
+
+@app.route('/unit_booking')
+def unit_booking():
+    return render_template('unit_booking.html')
+
 @app.route("/")
 @app.route("/dashboard")
 def dashboard():
