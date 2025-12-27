@@ -22,8 +22,9 @@ body {
 }
 
 .logo {
-    height: 100%;
-    object-fit: contain;
+    height: 60px;          /* SAME HEIGHT for both */
+    max-width: 160px;      /* SAME visual width */
+    object-fit: contain;  /* keep aspect ratio */
 }
 
 .logo.left {
@@ -33,6 +34,7 @@ body {
 .logo.right {
     margin-left: auto;
 }
+
 
 .logo {
     height: 100%;
