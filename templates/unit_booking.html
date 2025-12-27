@@ -1,185 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Unit Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: #004080;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        fieldset {
+            border: 1px solid #999;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: white;
+        }
+        legend {
+            font-weight: bold;
+            color: #004080;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 180px;
+            padding: 4px;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 400px;
+            height: 60px;
+            padding: 4px;
+            margin-bottom: 10px;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        .tab-buttons button {
+            margin-right: 5px;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #e6eef6;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            color: #004080;
+        }
+        .tab-buttons button.active {
+            background-color: #004080;
+            color: white;
+        }
+        .applicant-tab {
+            display: none;
+            margin-top: 10px;
+        }
+        .applicant-tab.active {
+            display: block;
+        }
+        .button-row {
+            text-align: right;
+            margin-top: 20px;
+        }
+        button.save-btn {
+            background-color: #004080;
+            color: white;
+            font-weight: bold;
+            padding: 8px 20px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button.close-btn {
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+        /* Date input small icon fix */
+        input[type="date"] {
+            width: 180px;
+            padding: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
 
+<h2>UNIT BOOKING</h2>
 
-<h2>Unit Booking Form</h2>
+<form id="bookingForm">
 
-<div class="form-section">
-    <label for="wing">Wing</label>
-    <select id="wing"></select>
+    <!-- Booking Date & Sales Executive -->
+    <fieldset>
+        <div class="form-row">
+            <label for="bookingDate">Booking Date</label>
+            <input type="date" id="bookingDate" name="bookingDate" required />
+            <label for="salesExec" style="margin-left: 40px;">Sales Executive</label>
+            <select id="salesExec" name="salesExec" required>
+                <option value="">Select</option>
+                <option value="Exec1">Executive 1</option>
+                <option value="Exec2">Executive 2</option>
+                <option value="Exec3">Executive 3</option>
+            </select>
+        </div>
+    </fieldset>
 
-    <label for="floor">Floor</label>
-    <select id="floor"></select>
+    <!-- Applicant Info Tabs -->
+    <fieldset>
+        <legend>Applicant Info</legend>
 
-    <label for="unitType">Unit Type</label>
-    <select id="unitType"></select>
+        <div class="tab-buttons">
+            <button type="button" class="active" onclick="showApplicant(1)">Applicant 1</button>
+            <button type="button" onclick="showApplicant(2)">Applicant 2</button>
+            <button type="button" onclick="showApplicant(3)">Applicant 3</button>
+        </div>
 
-    <label for="flatNo">Flat No</label>
-    <select id="flatNo"></select>
+        <!-- Applicant 1 -->
+        <div id="applicant1" class="applicant-tab active">
+            <div class="form-row">
+                <label for="salutation1">Salutation</label>
+                <select id="salutation1" name="salutation1" required>
+                    <option value="">Select</option>
+                    <option>Mr.</option>
+                    <option>Ms.</option>
+                    <option>Mrs.</option>
+                    <option>Dr.</option>
+                </select>
+                <label for="firstName1" style="margin-left: 20px;">First Name</label>
+                <input type="text" id="firstName1" name="firstName1" required />
+                <label for="middleName1" style="margin-left: 20px;">Middle Name</label>
+                <input type="text" id="middleName1" name="middleName1" />
+            </div>
+            <div class="form-row">
+                <label for="lastName1">Last Name</label>
+                <input type="text" id="lastName1" name="lastName1" required />
+                <label for="occupation1" style="margin-left: 20px;">Occupation</label>
+                <select id="occupation1" name="occupation1" required>
+                    <option value="">Select</option>
+                    <option>Employed</option>
+                    <option>Self-Employed</option>
+                    <option>Student</option>
+                    <option>Retired</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="mobile1">Mobile Number</label>
+                <input type="text" id="mobile1" name="mobile1" required pattern="\d{10}" title="10 digit mobile number" />
+                <label for="email1" style="margin-left: 20px;">Email</label>
+                <input type="email" id="email1" name="email1" />
+                <label for="pan1" style="margin-left: 20px;">PAN Number</label>
+                <input type="text" id="pan1" name="pan1" maxlength="10" />
+                <label for="adhar1" style="margin-left: 20px;">Aadhar Number</label>
+                <input type="text" id="adhar1" name="adhar1" maxlength="12" />
+            </div>
+            <div class="form-row">
+                <label for="address1">Address</label>
+                <textarea id="address1" name="address1" required></textarea>
+                <label for="age1" style="margin-left: 20px;">Age</label>
+                <input type="number" id="age1" name="age1" min="0" max="120" required />
+            </div>
+        </div>
 
-    <label for="carpet">Carpet Area (sq.ft.)</label>
-    <input type="number" id="carpet" readonly>
+        <!-- Applicant 2 -->
+        <div id="applicant2" class="applicant-tab">
+            <div class="form-row">
+                <label for="salutation2">Salutation</label>
+                <select id="salutation2" name="salutation2">
+                    <option value="">Select</option>
+                    <option>Mr.</option>
+                    <option>Ms.</option>
+                    <option>Mrs.</option>
+                    <option>Dr.</option>
+                </select>
+                <label for="firstName2" style="margin-left: 20px;">First Name</label>
+                <input type="text" id="firstName2" name="firstName2" />
+                <label for="middleName2" style="margin-left: 20px;">Middle Name</label>
+                <input type="text" id="middleName2" name="middleName2" />
+            </div>
+            <div class="form-row">
+                <label for="lastName2">Last Name</label>
+                <input type="text" id="lastName2" name="lastName2" />
+                <label for="occupation2" style="margin-left: 20px;">Occupation</label>
+                <select id="occupation2" name="occupation2">
+                    <option value="">Select</option>
+                    <option>Employed</option>
+                    <option>Self-Employed</option>
+                    <option>Student</option>
+                    <option>Retired</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="mobile2">Mobile Number</label>
+                <input type="text" id="mobile2" name="mobile2" pattern="\d{10}" title="10 digit mobile number" />
+                <label for="email2" style="margin-left: 20px;">Email</label>
+                <input type="email" id="email2" name="email2" />
+                <label for="pan2" style="margin-left: 20px;">PAN Number</label>
+                <input type="text" id="pan2" name="pan2" maxlength="10" />
+                <label for="adhar2" style="margin-left: 20px;">Aadhar Number</label>
+                <input type="text" id="adhar2" name="adhar2" maxlength="12" />
+            </div>
+            <div class="form-row">
+                <label for="address2">Address</label>
+                <textarea id="address2" name="address2"></textarea>
+                <label for="age2" style="margin-left: 20px;">Age</label>
+                <input type="number" id="age2" name="age2" min="0" max="120" />
+            </div>
+        </div>
 
-    <label for="agreementCost">Agreement Cost</label>
-    <input type="number" id="agreementCost">
+        <!-- Applicant 3 -->
+        <div id="applicant3" class="applicant-tab">
+            <div class="form-row">
+                <label for="salutation3">Salutation</label>
+                <select id="salutation3" name="salutation3">
+                    <option value="">Select</option>
+                    <option>Mr.</option>
+                    <option>Ms.</option>
+                    <option>Mrs.</option>
+                    <option>Dr.</option>
+                </select>
+                <label for="firstName3" style="margin-left: 20px;">First Name</label>
+                <input type="text" id="firstName3" name="firstName3" />
+                <label for="middleName3" style="margin-left: 20px;">Middle Name</label>
+                <input type="text" id="middleName3" name="middleName3" />
+            </div>
+            <div class="form-row">
+                <label for="lastName3">Last Name</label>
+                <input type="text" id="lastName3" name="lastName3" />
+                <label for="occupation3" style="margin-left: 20px;">Occupation</label>
+                <select id="occupation3" name="occupation3">
+                    <option value="">Select</option>
+                    <option>Employed</option>
+                    <option>Self-Employed</option>
+                    <option>Student</option>
+                    <option>Retired</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="mobile3">Mobile Number</label>
+                <input type="text" id="mobile3" name="mobile3" pattern="\d{10}" title="10 digit mobile number" />
+                <label for="email3" style="margin-left: 20px;">Email</label>
+                <input type="email" id="email3" name="email3" />
+                <label for="pan3" style="margin-left: 20px;">PAN Number</label>
+                <input type="text" id="pan3" name="pan3" maxlength="10" />
+                <label for="adhar3" style="margin-left: 20px;">Aadhar Number</label>
+                <input type="text" id="adhar3" name="adhar3" maxlength="12" />
+            </div>
+            <div class="form-row">
+                <label for="address3">Address</label>
+                <textarea id="address3" name="address3"></textarea>
+                <label for="age3" style="margin-left: 20px;">Age</label>
+                <input type="number" id="age3" name="age3" min="0" max="120" />
+            </div>
+        </div>
 
-    <label for="gst">GST</label>
-    <input type="number" id="gst" readonly>
+    </fieldset>
 
-    <label for="stampDuty">Stamp Duty</label>
-    <input type="number" id="stampDuty" readonly>
+    <!-- Payment Details -->
+    <fieldset>
+        <legend style="color:#004080;">Payment Details</legend>
 
-    <label for="registration">Registration</label>
-    <input type="number" id="registration" readonly>
+        <div class="form-row">
+            <label for="bookingAmount">Booking Amount</label>
+            <input type="number" id="bookingAmount" name="bookingAmount" required />
+            <label for="paymentMode" style="margin-left: 40px;">Payment Mode</label>
+            <select id="paymentMode" name="paymentMode" required>
+                <option value="">Select</option>
+                <option>Cash</option>
+                <option>Cheque</option>
+                <option>Online Transfer</option>
+                <option>Demand Draft</option>
+            </select>
+        </div>
 
-    <label for="package">Package Total</label>
-    <input type="number" id="package" readonly>
+        <div class="form-row">
+            <label for="chequeNo">Cheque/TRN No</label>
+            <input type="text" id="chequeNo" name="chequeNo" />
+            <label for="chequeDate" style="margin-left: 20px;">Cheque/TRN Date</label>
+            <input type="date" id="chequeDate" name="chequeDate" />
+        </div>
 
-    <label for="furniture">Furniture</label>
-    <input type="number" id="furniture">
+        <div class="form-row">
+            <label for="bankName">Bank Name</label>
+            <select id="bankName" name="bankName">
+                <option value="">Select</option>
+                <option>Bank A</option>
+                <option>Bank B</option>
+                <option>Bank C</option>
+            </select>
+        </div>
 
-    <button onclick="bookUnit()">Book Unit</button>
-    <button onclick="clearForm()">Clear Form</button>
-</div>
+    </fieldset>
 
-<h3>Booked Units</h3>
-<table id="bookedUnitsTable">
-    <thead>
-        <tr>
-            <th>Wing</th><th>Floor</th><th>Unit Type</th><th>Flat No</th><th>Carpet</th><th>Package</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+    <!-- Booking Calculation & Area Details -->
+    <fieldset>
+        <legend style="color:#004080;">Booking Calculation & Area Details</legend>
+
+        <div class="form-row">
+            <label for="wing">Wing</label>
+            <select id="wing" name="wing" required>
+                <option value="">Select</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+
+            <label for="floor" style="margin-left: 20px;">Floor</label>
+            <select id="floor" name="floor" required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+
+            <label for="unitType" style="margin-left: 20px;">Unit Type</label>
+            <select id="unitType" name="unitType" required>
+                <option value="">Select</option>
+                <option>1BHK</option>
+                <option>2BHK</option>
+                <option>3BHK</option>
+            </select>
+
+            <label for="unitNumber" style="margin-left: 20px;">Unit Number</label>
+            <select id="unitNumber" name="unitNumber" required>
+                <option value="">Select</option>
+                <option>101</option>
+                <option>102</option>
+                <option>201</option>
+            </select>
+
+            <label for="carpet" style="margin-left: 20px;">Carpet</label>
+            <input type="number" id="carpet" name="carpet" readonly />
+        </div>
+
+        <div class="form-row">
+            <label for="agreementCost">Agreement Cost</label>
+            <input type="number" id="agreementCost" name="agreementCost" required />
+            <label for="gst" style="margin-left: 20px;">GST</label>
+            <input type="number" id="gst" name="gst" readonly />
+            <label for="stampDuty" style="margin-left: 20px;">Stamp Duty</label>
+            <input type="number" id="stampDuty" name="stampDuty" readonly />
+            <label for="registration" style="margin-left: 20px;">Registration</label>
+            <input type="number" id="registration" name="registration" readonly />
+        </div>
+
+        <div class="form-row">
+            <label for="furnitureCharges">Furniture Charges</label>
+            <input type="number" id="furnitureCharges" name="furnitureCharges" />
+            <label for="actualPackage" style="margin-left: 20px;">Actual Package</label>
+            <input type="number" id="actualPackage" name="actualPackage" readonly />
+            <label for="packageTotal" style="margin-left: 20px;">Package Total</label>
+            <input type="number" id="packageTotal" name="packageTotal" readonly />
+            <label for="parkingType" style="margin-left: 20px;">Parking Type</label>
+            <select id="parkingType" name="parkingType">
+                <option value="">Select</option>
+                <option>Covered</option>
+                <option>Open</option>
+                <option>None</option>
+            </select>
+        </div>
+
+        <div class="form-row" style="margin-top: 10px;">
+            <label for="source" style="width: 100px;">Source</label>
+            <input type="text" id="source" name="source" style="width: 600px;" />
+        </div>
+
+    </fieldset>
+
+    <div class="button-row">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="close-btn" onclick="window.close()">Close</button>
+    </div>
+
+</form>
 
 <script>
-const areaStatement = [
-    // Mock data: Wing, Floor, FlatNo, UnitType, Carpet, Status
-    {wing:"A", floor:"1", flatNo:"101", type:"2BHK", carpet:900, status:"AVAILABLE"},
-    {wing:"A", floor:"1", flatNo:"102", type:"2BHK", carpet:920, status:"BOOKED"},
-    {wing:"A", floor:"2", flatNo:"201", type:"3BHK", carpet:1100, status:"AVAILABLE"},
-    {wing:"B", floor:"1", flatNo:"101", type:"2BHK", carpet:880, status:"AVAILABLE"}
-];
+    function showApplicant(num) {
+        document.querySelectorAll('.applicant-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('applicant' + num).classList.add('active');
+        event.target.classList.add('active');
+    }
 
-let bookedUnits = [];
-
-function initForm() {
-    const wingSelect = document.getElementById('wing');
-    const wings = [...new Set(areaStatement.map(u => u.wing))];
-    wingSelect.innerHTML = '<option value="">Select Wing</option>';
-    wings.forEach(w => wingSelect.innerHTML += `<option value="${w}">${w}</option>`);
-
-    wingSelect.onchange = fillFloors;
-    document.getElementById('floor').onchange = fillUnitTypes;
-    document.getElementById('unitType').onchange = fillFlats;
-    document.getElementById('flatNo').onchange = fillCarpet;
-    document.getElementById('agreementCost').oninput = calculateAmounts;
-    document.getElementById('furniture').oninput = calculateAmounts;
-}
-
-function fillFloors() {
-    const wing = document.getElementById('wing').value;
-    const floors = [...new Set(areaStatement.filter(u => u.wing===wing && u.status!=='BOOKED').map(u => u.floor))];
-    const floorSelect = document.getElementById('floor');
-    floorSelect.innerHTML = '<option value="">Select Floor</option>';
-    floors.forEach(f => floorSelect.innerHTML += `<option value="${f}">${f}</option>`);
-    document.getElementById('unitType').innerHTML = '<option value="">Select Unit Type</option>';
-    document.getElementById('flatNo').innerHTML = '<option value="">Select Flat</option>';
-    document.getElementById('carpet').value = '';
-}
-
-function fillUnitTypes() {
-    const wing = document.getElementById('wing').value;
-    const floor = document.getElementById('floor').value;
-    const types = [...new Set(areaStatement.filter(u => u.wing===wing && u.floor===floor && u.status!=='BOOKED').map(u => u.type))];
-    const typeSelect = document.getElementById('unitType');
-    typeSelect.innerHTML = '<option value="">Select Unit Type</option>';
-    types.forEach(t => typeSelect.innerHTML += `<option value="${t}">${t}</option>`);
-    document.getElementById('flatNo').innerHTML = '<option value="">Select Flat</option>';
-    document.getElementById('carpet').value = '';
-}
-
-function fillFlats() {
-    const wing = document.getElementById('wing').value;
-    const floor = document.getElementById('floor').value;
-    const type = document.getElementById('unitType').value;
-    const flats = areaStatement.filter(u => u.wing===wing && u.floor===floor && u.type===type && u.status!=='BOOKED');
-    const flatSelect = document.getElementById('flatNo');
-    flatSelect.innerHTML = '<option value="">Select Flat</option>';
-    flats.forEach(f => flatSelect.innerHTML += `<option value="${f.flatNo}">${f.flatNo}</option>`);
-    document.getElementById('carpet').value = '';
-}
-
-function fillCarpet() {
-    const wing = document.getElementById('wing').value;
-    const floor = document.getElementById('floor').value;
-    const type = document.getElementById('unitType').value;
-    const flat = document.getElementById('flatNo').value;
-    const unit = areaStatement.find(u => u.wing===wing && u.floor===floor && u.type===type && u.flatNo===flat);
-    if(unit) document.getElementById('carpet').value = unit.carpet;
-    calculateAmounts();
-}
-
-function calculateAmounts() {
-    let agreement = parseFloat(document.getElementById('agreementCost').value) || 0;
-    let furniture = parseFloat(document.getElementById('furniture').value) || 0;
-    let gst = agreement >= 4500000 ? agreement*0.05 : agreement*0.01;
-    let stampDuty = agreement*0.07;
-    let reg = agreement >= 3000000 ? 30000 : agreement*0.01;
-    document.getElementById('gst').value = Math.round(gst);
-    document.getElementById('stampDuty').value = Math.round(stampDuty);
-    document.getElementById('registration').value = Math.round(reg);
-    document.getElementById('package').value = Math.round(agreement + gst + stampDuty + reg + furniture);
-}
-
-function bookUnit() {
-    const wing = document.getElementById('wing').value;
-    const floor = document.getElementById('floor').value;
-    const type = document.getElementById('unitType').value;
-    const flat = document.getElementById('flatNo').value;
-    if(!wing || !floor || !type || !flat) { alert("Select all fields"); return; }
-
-    // Mark booked
-    const unit = areaStatement.find(u => u.wing===wing && u.floor===floor && u.type===type && u.flatNo===flat);
-    if(unit.status==='BOOKED') { alert("Already booked"); return; }
-    unit.status='BOOKED';
-
-    bookedUnits.push({wing,floor,type,flat,carpet:unit.carpet,package:document.getElementById('package').value});
-    renderBookedUnits();
-    clearForm();
-}
-
-function renderBookedUnits() {
-    const tbody = document.querySelector('#bookedUnitsTable tbody');
-    tbody.innerHTML = '';
-    bookedUnits.forEach(u => {
-        tbody.innerHTML += `<tr>
-            <td>${u.wing}</td>
-            <td>${u.floor}</td>
-            <td>${u.type}</td>
-            <td>${u.flat}</td>
-            <td>${u.carpet}</td>
-            <td>${u.package}</td>
-        </tr>`;
+    // Example: add your save form logic here if needed
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Form submitted! (Implement your save logic)');
     });
-}
-
-function clearForm() {
-    document.getElementById('wing').value='';
-    document.getElementById('floor').innerHTML='<option value="">Select Floor</option>';
-    document.getElementById('unitType').innerHTML='<option value="">Select Unit Type</option>';
-    document.getElementById('flatNo').innerHTML='<option value="">Select Flat</option>';
-    document.getElementById('carpet').value='';
-    document.getElementById('agreementCost').value='';
-    document.getElementById('gst').value='';
-    document.getElementById('stampDuty').value='';
-    document.getElementById('registration').value='';
-    document.getElementById('package').value='';
-    document.getElementById('furniture').value='';
-}
-
-if (!window.unitBookingInitialized) {
-    initForm();
-    window.unitBookingInitialized = true;
-}
-
 </script>
+
+</body>
+</html>
