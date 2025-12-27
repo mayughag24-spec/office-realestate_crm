@@ -250,3 +250,42 @@ table td {
         margin-bottom: 8px;
     }
 }
+/* Make mainContent stretch */
+#mainContent {
+    width: 100%;
+    min-height: 100vh; /* full viewport height */
+    box-sizing: border-box;
+}
+
+/* Form fills content */
+#mainContent form {
+    width: 100%;
+}
+
+/* Make form rows full width and wrap nicely */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* space between fields */
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    min-width: 120px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    flex: 1;
+    padding: 5px;
+}
+
+/* Applicant tabs */
+.applicant-tab {
+    display: none;
+}
+
+.applicant-tab.active {
+    display: block;
+}
