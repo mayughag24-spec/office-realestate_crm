@@ -5,33 +5,32 @@ body {
 }
 
 /* HEADER */
+/* HEADER */
 .header {
     height: 70px;
     background-color: #a9bfd4;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* keeps logos at edges */
     padding: 0 15px;
 }
 
+/* HEADER TITLE */
 .header-title {
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
+    flex: 1; /* allows title to stay centered between logos */
 }
 
+/* LOGOS */
 .logo {
-    height: 60px;
-    max-width: 160px;
+    height: 60px;    /* fixed height */
+    width: 160px;    /* fixed width for uniform size */
     object-fit: contain;
 }
 
-.logo.left {
-    margin-right: auto;
-}
 
-.logo.right {
-    margin-left: auto;
-}
 
 /* LAYOUT */
 .container {
