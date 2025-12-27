@@ -51,29 +51,70 @@ body {
 .tree,
 .tree ul {
     list-style: none;
-    padding-left: 0; /* remove default padding */
+    padding-left: 20px; /* indent for children */
     margin: 0;
-}
-
-.tree ul {
-    display: none; /* hide children by default */
-    padding-left: 20px; /* indent nested items */
-}
-
-.tree li {
-    margin: 4px 0;
     position: relative;
 }
 
-/* Add expand/collapse indicator */
-.tree li::before {
-    content: "▸"; /* arrow icon */
-    display: inline-block;
-    width: 1em;
-    cursor: pointer;
-    color: #666;
-    margin-right: 5px;
+/* Draw vertical line connecting children */
+.tree ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10px; /* position line next to toggle */
+    bottom: 0;
+    width: 1px;
+    background: #ccc;
 }
+
+/* Each node */
+.tree li {
+    position: relative;
+    margin: 0;
+    padding-left: 20px; /* space for vertical line */
+}
+
+/* Draw horizontal line from parent to node */
+.tree li::before {
+    content: '';
+    position: absolute;
+    top: 12px; /* vertically center with link */
+    left: 0;
+    width: 10px; /* horizontal line length */
+    height: 1px;
+    background: #ccc;
+}
+
+/* Links */
+.tree a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.tree a:hover {
+    background: #e6eef6;
+}
+
+/* Toggle arrow */
+.tree li::after {
+    content: "▸";
+    position: absolute;
+    left: -15px;
+    top: 4px;
+    cursor: pointer;
+}
+
+.node.open > ul {
+    display: block;
+}
+
+.node.open::after {
+    content: "▾";
+}
+
 
 /* Open state */
 .node.open > ul {
