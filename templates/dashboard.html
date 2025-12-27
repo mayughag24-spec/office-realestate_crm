@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>CRM Dashboard</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -10,9 +9,7 @@
 <!-- TOP HEADER -->
 <div class="header">
     <img src="{{ url_for('static', filename='images/unique.png') }}" class="logo left">
-
     <div class="header-title">CRM Home</div>
-
     <img src="{{ url_for('static', filename='images/prestigia.png') }}" class="logo right">
 </div>
 
@@ -28,23 +25,20 @@
             <li class="node">
                 <span class="toggle">Sales</span>
                 <ul>
-                <li class="node">
-    <span class="toggle">Booking</span>
-    <ul>
-        <li>
-            <a href="#" class="load-content" data-url="/unit_booking">
-                Unit Booking
-            </a>
-        </li>
-        <li>
-            <a href="#">Booked Unit List</a>
-        </li>
-    </ul>
-</li>
-
+                    <li class="node">
+                        <span class="toggle">Booking</span>
+                        <ul>
+                            <li>
+                                <a href="#" class="load-content" data-url="/unit_booking">Unit Booking</a>
+                            </li>
+                            <li>
+                                <a href="#">Booked Unit List</a>
+                            </li>
                         </ul>
                     </li>
-               
+                </ul>
+            </li>
+
             <li class="node">
                 <span class="toggle">Post Sales</span>
                 <ul>
@@ -69,9 +63,6 @@
             </li>
 
         </ul>
-         </ul>
-            </li>
-
     </div>
 
     <!-- CONTENT AREA -->
