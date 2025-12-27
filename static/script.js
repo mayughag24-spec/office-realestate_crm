@@ -1,17 +1,23 @@
 function loadDashboard() {
-  document.getElementById("content").innerHTML =
-    "<h1>CRM Home Dashboard is running successfully 🚀</h1>";
+    const content = document.getElementById("content");
+    content.innerHTML = `
+        <h1>CRM Home Dashboard is running successfully 🚀</h1>
+    `;
 }
 
-function loadPage(name) {
-  document.getElementById("content").innerHTML =
-    "<h2>" + name + "</h2><p>Module under construction</p>";
+function loadPage(title) {
+    const content = document.getElementById("content");
+    content.innerHTML = `<h2>${title}</h2><p>Module under construction</p>`;
 }
 
 function loadUnitBooking() {
-  const content = document.getElementById("content");
-  const template = document.getElementById("unitBookingTemplate");
+    const template = document.getElementById("unitBookingTemplate");
+    const content = document.getElementById("content");
 
-  content.innerHTML = "";
-  content.appendChild(template.content.cloneNode(true));
+    // Clear content
+    content.innerHTML = "";
+
+    // Clone template and append
+    const clone = template.content.cloneNode(true);
+    content.appendChild(clone);
 }
