@@ -4,24 +4,25 @@ body {
     background: #f4f6f9;
 }
 
-/* TOP BAR */
+/* HEADER */
 .header {
-    display: grid;
-    grid-template-columns: 180px 1fr 180px;
+    height: 70px;
+    background-color: #a9bfd4;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
 }
-
 
 .header-title {
     font-size: 20px;
     font-weight: bold;
-    color: #000;
 }
 
 .logo {
-    height: 60px;          /* SAME HEIGHT for both */
-    max-width: 160px;      /* SAME visual width */
-    object-fit: contain;  /* keep aspect ratio */
+    height: 60px;
+    max-width: 160px;
+    object-fit: contain;
 }
 
 .logo.left {
@@ -32,52 +33,62 @@ body {
     margin-left: auto;
 }
 
-
-.logo {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-}
-
-
-.title {
-    font-size: 22px;
-    font-weight: bold;
-}
-
 /* LAYOUT */
 .container {
     display: flex;
 }
 
-/* SIDEBAR TREE */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
     background: #ffffff;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     overflow-y: auto;
     border-right: 1px solid #ccc;
     padding: 10px;
 }
 
+/* TREE VIEW */
 .tree,
 .tree ul {
-    list-style-type: none;
+    list-style: none;
     padding-left: 15px;
+    margin: 0;
+}
+
+.tree ul {
+    display: none; /* HIDE CHILDREN */
 }
 
 .tree li {
     margin: 6px 0;
-    cursor: pointer;
 }
 
 .tree a {
     text-decoration: none;
     color: #333;
+    padding: 4px;
+    display: block;
 }
 
 .tree a:hover {
-    color: #007bff;
+    background: #e6eef6;
+}
+
+.toggle {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px;
+    display: block;
+}
+
+.toggle:hover {
+    background: #e6eef6;
+}
+
+/* OPEN STATE */
+.node.open > ul {
+    display: block;
 }
 
 /* CONTENT */
