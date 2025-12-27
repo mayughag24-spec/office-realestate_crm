@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CRM Dashboard</title>
+    <title>CRM</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
 <!-- HEADER -->
@@ -16,58 +15,30 @@
 </div>
 
 <!-- MAIN LAYOUT -->
-<div class="layout">
+<div class="main">
 
     <!-- SIDEBAR -->
     <div class="sidebar">
         <ul class="tree">
-
             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
 
             <li class="node">
                 <span class="toggle">Sales</span>
                 <ul>
-                    <li class="node">
-                        <span class="toggle">Booking</span>
-                        <ul>
-                            <li>
-                                <a href="{{ url_for('unit_booking') }}">
-                                    Unit Booking
-                                </a>
-                            </li>
-                            <li><a href="#">Booked Unit List</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="node">
-                <span class="toggle">Post Sales</span>
-                <ul>
-                    <li class="node">
-                        <span class="toggle">Recovery</span>
-                        <ul>
-                            <li><a href="#">Collection List</a></li>
-                            <li><a href="#">Update Customer Info</a></li>
-                            <li><a href="#">Agreement Details</a></li>
-                            <li><a href="/payments">Payments</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ url_for('unit_booking') }}">Unit Booking</a></li>
                 </ul>
             </li>
 
             <li class="node">
                 <span class="toggle">Reports</span>
                 <ul>
-                    <li><a href="#">Consolidated Collection</a></li>
-                    <li><a href="#">Follow Up</a></li>
+                    <li><a href="#">Collections</a></li>
                 </ul>
             </li>
-
         </ul>
     </div>
 
-    <!-- CONTENT AREA -->
+    <!-- CONTENT -->
     <div class="content">
         {% block content %}{% endblock %}
     </div>
