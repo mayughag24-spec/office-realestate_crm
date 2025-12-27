@@ -1,174 +1,203 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Booking</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px;}
+    h2 { text-align:center; }
+    .form-section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+    label { display: block; margin-top: 10px; font-weight: bold;}
+    input, select { width: 100%; padding: 6px; margin-top: 4px; border-radius: 4px; border: 1px solid #ccc; }
+    button { margin-top: 15px; padding: 10px 20px; border:none; border-radius: 5px; background: #4CAF50; color: #fff; cursor: pointer; }
+    button:hover { background: #45a049; }
+    table { width: 100%; border-collapse: collapse; margin-top:20px;}
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 8px; text-align: center;}
+</style>
+</head>
+<body>
 
-{% block content %}
+<h2>Unit Booking Form</h2>
 
-<div class="container">
+<div class="form-section">
+    <label for="wing">Wing</label>
+    <select id="wing"></select>
 
-<h1>UNIT BOOKING</h1>
+    <label for="floor">Floor</label>
+    <select id="floor"></select>
 
-<!-- Booking + Payment -->
-<div class="grid-2">
+    <label for="unitType">Unit Type</label>
+    <select id="unitType"></select>
 
-<!-- LEFT -->
-<fieldset>
-<legend>Booking Details</legend>
-<div class="grid">
-    <div>
-        <label>Booking Date</label>
-        <input type="date">
-    </div>
-    <div>
-        <label>Sales Executive</label>
-        <select></select>
-    </div>
-    <div>
-        <label>Salutation</label>
-        <select></select>
-    </div>
-    <div>
-        <label>First Name</label>
-        <input type="text">
-    </div>
+    <label for="flatNo">Flat No</label>
+    <select id="flatNo"></select>
 
-    <div>
-        <label>Middle Name</label>
-        <input type="text">
-    </div>
-    <div>
-        <label>Last Name</label>
-        <input type="text">
-    </div>
-    <div>
-        <label>Occupation</label>
-        <select></select>
-    </div>
-    <div>
-        <label>Mobile</label>
-        <input type="text">
-    </div>
+    <label for="carpet">Carpet Area (sq.ft.)</label>
+    <input type="number" id="carpet" readonly>
 
-    <div>
-        <label>Email</label>
-        <input type="email">
-    </div>
-    <div>
-        <label>PAN No</label>
-        <input type="text">
-    </div>
-    <div>
-        <label>Aadhar No</label>
-        <input type="text">
-    </div>
-    <div>
-        <label>Age</label>
-        <input type="number">
-    </div>
+    <label for="agreementCost">Agreement Cost</label>
+    <input type="number" id="agreementCost">
 
-    <div class="full">
-        <label>Address</label>
-        <input type="text">
-    </div>
-</div>
-</fieldset>
+    <label for="gst">GST</label>
+    <input type="number" id="gst" readonly>
 
-<!-- RIGHT -->
-<fieldset>
-<legend>Payment Details</legend>
-<div class="grid-3">
-    <div>
-        <label>Booking Amount</label>
-        <input type="number">
-    </div>
-    <div>
-        <label>Payment Mode</label>
-        <select></select>
-    </div>
-    <div>
-        <label>Cheque / TRN No</label>
-        <input type="text">
-    </div>
+    <label for="stampDuty">Stamp Duty</label>
+    <input type="number" id="stampDuty" readonly>
 
-    <div>
-        <label>Cheque / TRN Date</label>
-        <input type="date">
-    </div>
-    <div>
-        <label>Bank Name</label>
-        <select></select>
-    </div>
-</div>
-</fieldset>
+    <label for="registration">Registration</label>
+    <input type="number" id="registration" readonly>
 
+    <label for="package">Package Total</label>
+    <input type="number" id="package" readonly>
+
+    <label for="furniture">Furniture</label>
+    <input type="number" id="furniture">
+
+    <button onclick="bookUnit()">Book Unit</button>
+    <button onclick="clearForm()">Clear Form</button>
 </div>
 
-<!-- Booking Calculation -->
-<fieldset>
-<legend>Booking Calculation & Area Details</legend>
-<div class="grid">
+<h3>Booked Units</h3>
+<table id="bookedUnitsTable">
+    <thead>
+        <tr>
+            <th>Wing</th><th>Floor</th><th>Unit Type</th><th>Flat No</th><th>Carpet</th><th>Package</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
-    <div>
-        <label>Wing</label>
-        <select id="wing"></select>
-    </div>
-    <div>
-        <label>Floor</label>
-        <select id="floor"></select>
-    </div>
-    <div>
-        <label>Unit Type</label>
-        <select id="unitType"></select>
-    </div>
-    <div>
-        <label>Unit Number</label>
-        <select id="flatNo"></select>
-    </div>
+<script>
+const areaStatement = [
+    // Mock data: Wing, Floor, FlatNo, UnitType, Carpet, Status
+    {wing:"A", floor:"1", flatNo:"101", type:"2BHK", carpet:900, status:"AVAILABLE"},
+    {wing:"A", floor:"1", flatNo:"102", type:"2BHK", carpet:920, status:"BOOKED"},
+    {wing:"A", floor:"2", flatNo:"201", type:"3BHK", carpet:1100, status:"AVAILABLE"},
+    {wing:"B", floor:"1", flatNo:"101", type:"2BHK", carpet:880, status:"AVAILABLE"}
+];
 
-    <div>
-        <label>Carpet Area</label>
-        <input id="carpet" readonly>
-    </div>
-    <div>
-        <label>Agreement Cost</label>
-        <input id="agreementCost">
-    </div>
-    <div>
-        <label>GST</label>
-        <input id="gst" readonly>
-    </div>
-    <div>
-        <label>Stamp Duty</label>
-        <input id="stampDuty" readonly>
-    </div>
+let bookedUnits = [];
 
-    <div>
-        <label>Registration</label>
-        <input id="registration" readonly>
-    </div>
-    <div>
-        <label>Furniture Charges</label>
-        <input id="furniture">
-    </div>
-    <div>
-        <label>Package Total</label>
-        <input id="package" readonly>
-    </div>
-    <div>
-        <label>Parking Type</label>
-        <select></select>
-    </div>
+function initForm() {
+    const wingSelect = document.getElementById('wing');
+    const wings = [...new Set(areaStatement.map(u => u.wing))];
+    wingSelect.innerHTML = '<option value="">Select Wing</option>';
+    wings.forEach(w => wingSelect.innerHTML += `<option value="${w}">${w}</option>`);
 
-    <div class="full">
-        <label>Source</label>
-        <input>
-    </div>
-</div>
-</fieldset>
+    wingSelect.onchange = fillFloors;
+    document.getElementById('floor').onchange = fillUnitTypes;
+    document.getElementById('unitType').onchange = fillFlats;
+    document.getElementById('flatNo').onchange = fillCarpet;
+    document.getElementById('agreementCost').oninput = calculateAmounts;
+    document.getElementById('furniture').oninput = calculateAmounts;
+}
 
-<div class="buttons">
-    <button class="save">Save</button>
-    <a href="{{ url_for('dashboard') }}" class="close">Close</a>
-</div>
+function fillFloors() {
+    const wing = document.getElementById('wing').value;
+    const floors = [...new Set(areaStatement.filter(u => u.wing===wing && u.status!=='BOOKED').map(u => u.floor))];
+    const floorSelect = document.getElementById('floor');
+    floorSelect.innerHTML = '<option value="">Select Floor</option>';
+    floors.forEach(f => floorSelect.innerHTML += `<option value="${f}">${f}</option>`);
+    document.getElementById('unitType').innerHTML = '<option value="">Select Unit Type</option>';
+    document.getElementById('flatNo').innerHTML = '<option value="">Select Flat</option>';
+    document.getElementById('carpet').value = '';
+}
 
-</div>
+function fillUnitTypes() {
+    const wing = document.getElementById('wing').value;
+    const floor = document.getElementById('floor').value;
+    const types = [...new Set(areaStatement.filter(u => u.wing===wing && u.floor===floor && u.status!=='BOOKED').map(u => u.type))];
+    const typeSelect = document.getElementById('unitType');
+    typeSelect.innerHTML = '<option value="">Select Unit Type</option>';
+    types.forEach(t => typeSelect.innerHTML += `<option value="${t}">${t}</option>`);
+    document.getElementById('flatNo').innerHTML = '<option value="">Select Flat</option>';
+    document.getElementById('carpet').value = '';
+}
 
-{% endblock %}
+function fillFlats() {
+    const wing = document.getElementById('wing').value;
+    const floor = document.getElementById('floor').value;
+    const type = document.getElementById('unitType').value;
+    const flats = areaStatement.filter(u => u.wing===wing && u.floor===floor && u.type===type && u.status!=='BOOKED');
+    const flatSelect = document.getElementById('flatNo');
+    flatSelect.innerHTML = '<option value="">Select Flat</option>';
+    flats.forEach(f => flatSelect.innerHTML += `<option value="${f.flatNo}">${f.flatNo}</option>`);
+    document.getElementById('carpet').value = '';
+}
+
+function fillCarpet() {
+    const wing = document.getElementById('wing').value;
+    const floor = document.getElementById('floor').value;
+    const type = document.getElementById('unitType').value;
+    const flat = document.getElementById('flatNo').value;
+    const unit = areaStatement.find(u => u.wing===wing && u.floor===floor && u.type===type && u.flatNo===flat);
+    if(unit) document.getElementById('carpet').value = unit.carpet;
+    calculateAmounts();
+}
+
+function calculateAmounts() {
+    let agreement = parseFloat(document.getElementById('agreementCost').value) || 0;
+    let furniture = parseFloat(document.getElementById('furniture').value) || 0;
+    let gst = agreement >= 4500000 ? agreement*0.05 : agreement*0.01;
+    let stampDuty = agreement*0.07;
+    let reg = agreement >= 3000000 ? 30000 : agreement*0.01;
+    document.getElementById('gst').value = Math.round(gst);
+    document.getElementById('stampDuty').value = Math.round(stampDuty);
+    document.getElementById('registration').value = Math.round(reg);
+    document.getElementById('package').value = Math.round(agreement + gst + stampDuty + reg + furniture);
+}
+
+function bookUnit() {
+    const wing = document.getElementById('wing').value;
+    const floor = document.getElementById('floor').value;
+    const type = document.getElementById('unitType').value;
+    const flat = document.getElementById('flatNo').value;
+    if(!wing || !floor || !type || !flat) { alert("Select all fields"); return; }
+
+    // Mark booked
+    const unit = areaStatement.find(u => u.wing===wing && u.floor===floor && u.type===type && u.flatNo===flat);
+    if(unit.status==='BOOKED') { alert("Already booked"); return; }
+    unit.status='BOOKED';
+
+    bookedUnits.push({wing,floor,type,flat,carpet:unit.carpet,package:document.getElementById('package').value});
+    renderBookedUnits();
+    clearForm();
+}
+
+function renderBookedUnits() {
+    const tbody = document.querySelector('#bookedUnitsTable tbody');
+    tbody.innerHTML = '';
+    bookedUnits.forEach(u => {
+        tbody.innerHTML += `<tr>
+            <td>${u.wing}</td>
+            <td>${u.floor}</td>
+            <td>${u.type}</td>
+            <td>${u.flat}</td>
+            <td>${u.carpet}</td>
+            <td>${u.package}</td>
+        </tr>`;
+    });
+}
+
+function clearForm() {
+    document.getElementById('wing').value='';
+    document.getElementById('floor').innerHTML='<option value="">Select Floor</option>';
+    document.getElementById('unitType').innerHTML='<option value="">Select Unit Type</option>';
+    document.getElementById('flatNo').innerHTML='<option value="">Select Flat</option>';
+    document.getElementById('carpet').value='';
+    document.getElementById('agreementCost').value='';
+    document.getElementById('gst').value='';
+    document.getElementById('stampDuty').value='';
+    document.getElementById('registration').value='';
+    document.getElementById('package').value='';
+    document.getElementById('furniture').value='';
+}
+
+window.onload = initForm;
+</script>
+
+</body>
+</html>
