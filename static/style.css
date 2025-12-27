@@ -1,6 +1,7 @@
+/* ===== GLOBAL ===== */
 body {
     margin: 0;
-    font-family: Segoe UI, Arial;
+    font-family: Segoe UI, Arial, sans-serif;
     background: #f4f6f9;
 }
 
@@ -12,6 +13,9 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-title {
@@ -20,216 +24,169 @@ body {
 }
 
 .logo {
-    height: 60px;
-    max-width: 160px;
     object-fit: contain;
 }
 
 .logo.left {
-    margin-right: auto;
+    height: 40px;
+    margin-left: 15px;
 }
 
 .logo.right {
-    margin-left: auto;
+    height: 40px;
+    margin-right: 15px;
 }
 
 /* LAYOUT */
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
 /* SIDEBAR */
 .sidebar {
-    width: 260px;
-    background: #ffffff;
-    height: calc(100vh - 70px);
+    width: 220px;
+    background: #f0f4f8;
+    padding: 20px;
     overflow-y: auto;
     border-right: 1px solid #ccc;
-    padding: 10px;
+    box-sizing: border-box;
 }
 
 /* TREE VIEW */
-.tree,
-.tree ul {
+.tree, .tree ul {
     list-style: none;
-    padding-left: 15px;
+    padding-left: 10px;
     margin: 0;
 }
 
-.tree ul {
-    display: none; /* HIDE CHILDREN */
-}
-
 .tree li {
-    margin: 6px 0;
+    padding: 4px 0;
+    cursor: pointer;
 }
 
-.tree a {
+.tree li.node > .toggle {
+    font-weight: bold;
+    user-select: none;
+}
+
+.tree li a {
     text-decoration: none;
     color: #333;
-    padding: 4px;
     display: block;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
-.tree a:hover {
-    background: #e6eef6;
+.tree li a:hover {
+    background-color: #cce4ff;
 }
 
-.toggle {
-    cursor: pointer;
-    font-weight: bold;
-    padding: 4px;
-    display: block;
-}
-
-.toggle:hover {
-    background: #e6eef6;
-}
-
-/* OPEN STATE */
 .node.open > ul {
     display: block;
 }
 
-/* CONTENT */
+/* CONTENT AREA */
 .content {
     flex: 1;
-    padding: 20px;
-    background: #f9f9f9;
+    padding: 20px 40px;
+    background-color: #fff;
+    box-sizing: border-box;
 }
-/* Form Container */
+
+/* ===== FORM ===== */
 #bookingForm {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
     max-width: 1000px;
     margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
-/* Fieldsets */
-#bookingForm fieldset {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 6px;
-}
-
-/* Legends */
-#bookingForm legend {
-    font-weight: bold;
-    color: #004080;
-}
-
-/* Form Rows */
 .form-row {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 .form-row label {
-    width: 120px;
+    min-width: 120px;
     font-weight: bold;
 }
 
 .form-row input,
 .form-row select,
 .form-row textarea {
-    padding: 5px 8px;
-    margin-right: 20px;
-    flex: 1;
+    flex-grow: 1;
     min-width: 150px;
+    padding: 6px 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-right: 20px;
 }
 
-.form-row textarea {
-    height: 60px;
+textarea {
+    min-height: 60px;
     resize: vertical;
 }
 
-/* Tabs */
-.tab-buttons {
-    margin-bottom: 15px;
-}
-
+/* TABS */
 .tab-buttons button {
     padding: 6px 12px;
-    margin-right: 5px;
+    margin-right: 4px;
     border: 1px solid #004080;
-    background-color: #fff;
+    background-color: #e0e8ff;
     color: #004080;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 4px 4px 0 0;
+    font-weight: bold;
 }
 
 .tab-buttons button.active {
     background-color: #004080;
-    color: #fff;
+    color: white;
+    cursor: default;
 }
 
-/* Applicant Tabs */
 .applicant-tab {
     display: none;
+    padding: 15px;
+    border: 1px solid #004080;
+    border-radius: 0 4px 4px 4px;
+    background-color: #f5f8ff;
 }
 
 .applicant-tab.active {
     display: block;
 }
 
-/* Buttons */
-.button-row {
-    margin-top: 20px;
-}
-
-button.save-btn,
-button.close-btn {
-    padding: 8px 16px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #fff;
-    font-weight: bold;
-}
-
+/* BUTTONS */
 button.save-btn {
     background-color: #004080;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 button.close-btn {
     background-color: #888;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
     opacity: 0.9;
 }
 
-/* Responsive */
-@media (max-width: 800px) {
-    .form-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .form-row label {
-        width: 100%;
-        margin-bottom: 4px;
-    }
-
-    .form-row input,
-    .form-row select,
-    .form-row textarea {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
-}
-
-/* ===== TABLE ===== */
-
+/* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -248,212 +205,48 @@ table td {
     text-align: center;
 }
 
-/* Container for sidebar + content */
-.container {
-  display: flex;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-}
-
-/* Sidebar styling */
-.sidebar {
-  width: 220px; /* Fixed width */
-  background-color: #f0f4f8;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  border-right: 1px solid #ccc;
-}
-
-/* Sidebar tree */
-.tree, .tree ul {
-  list-style-type: none;
-  padding-left: 10px;
-  margin: 0;
-}
-
-.tree li {
-  padding: 4px 0;
-  cursor: pointer;
-}
-
-.tree li.node > .toggle {
-  font-weight: bold;
-  user-select: none;
-}
-
-.tree li a {
-  text-decoration: none;
-  color: #333;
-  display: block;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.tree li a:hover {
-  background-color: #cce4ff;
-}
-
-/* Highlight selected or active items */
-.tree li a.active, .tree li a:focus {
-  background-color: #004080;
-  color: white;
-}
-
-/* Content area */
-.content {
-  flex: 1;
-  padding: 20px 40px;
-  background-color: #fff;
-  box-sizing: border-box;
-}
-
-/* Header fix */
-.header {
-  background-color: #a9bedf;
-  color: #000;
-  text-align: center;
-  padding: 10px 0;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo.left {
-  height: 40px;
-  margin-left: 15px;
-}
-
-.logo.right {
-  height: 40px;
-  margin-right: 15px;
-}
-
-/* Form inputs */
-.form-row input, .form-row select, .form-row textarea {
-  flex-grow: 1;
-  min-width: 150px;
-  margin-right: 20px;
-  padding: 6px 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-/* Label spacing in forms */
-label {
-  font-weight: bold;
-  margin-right: 6px;
-  white-space: nowrap;
-}
-
-/* Fix form row alignment (flexbox) */
-.form-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.form-row label {
-  min-width: 110px;
-}
-
-.form-row input, .form-row select, .form-row textarea {
-  flex-grow: 1;
-  min-width: 150px;
-  margin-right: 20px;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 60px;
-}
-
-/* Tabs for applicant info */
-.tab-buttons button {
-  padding: 6px 12px;
-  border: 1px solid #004080;
-  background-color: #e0e8ff;
-  color: #004080;
-  cursor: pointer;
-  border-radius: 4px 4px 0 0;
-  margin-right: 4px;
-  font-weight: bold;
-}
-
-.tab-buttons button.active {
-  background-color: #004080;
-  color: white;
-  cursor: default;
-}
-
-/* Applicant tabs */
-.applicant-tab {
-  border: 1px solid #004080;
-  padding: 15px;
-  display: none;
-  border-radius: 0 4px 4px 4px;
-  background-color: #f5f8ff;
-}
-
-.applicant-tab.active {
-  display: block;
-}
-
-/* Buttons */
-button.save-btn {
-  background-color: #004080;
-  color: white;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-button.close-btn {
-  background-color: #999;
-  color: white;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Scrollbar for sidebar if overflow */
+/* SCROLLBAR */
 .sidebar::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
+    background: #ccc;
+    border-radius: 3px;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-  }
+    .container {
+        flex-direction: column;
+    }
 
-  .sidebar {
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-  }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
 
-  .content {
-    padding: 20px 15px;
-  }
+    .content {
+        padding: 20px 15px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row label {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
 }
