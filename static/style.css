@@ -34,9 +34,12 @@ body {
     margin-left: auto;
 }
 
-.logo-left, .logo-right {
-    height: 60px;
+.logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
 }
+
 
 .title {
     font-size: 22px;
