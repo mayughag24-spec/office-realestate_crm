@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>CRM Dashboard</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<!-- TOP HEADER -->
+<!-- ================= TOP HEADER ================= -->
 <div class="header">
-    <img src="{{ url_for('static', filename='images/unique.png') }}" class="logo left">
+    <img src="{{ url_for('static', filename='images/unique.png') }}" class="logo">
 
     <div class="header-title">CRM Home</div>
 
-    <img src="{{ url_for('static', filename='images/prestigia.png') }}" class="logo right">
+    <img src="{{ url_for('static', filename='images/prestigia.png') }}" class="logo">
 </div>
 
-<!-- MAIN LAYOUT -->
-<div class="container">
+<!-- ================= MAIN LAYOUT ================= -->
+<div class="layout">
 
-    <!-- TREE VIEW SIDEBAR -->
+    <!-- ============ SIDEBAR ============ -->
     <div class="sidebar">
         <ul class="tree">
 
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
 
             <li class="node">
                 <span class="toggle">Sales</span>
@@ -31,9 +34,14 @@
                     <li class="node">
                         <span class="toggle">Booking</span>
                         <ul>
-                           <li><a href="{{ url_for('unit_booking') }}">Unit Booking</a></li>
-
-                            <li><a href="#">Booked Unit List</a></li>
+                            <li>
+                                <a href="{{ url_for('unit_booking') }}">
+                                    Unit Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Booked Unit List</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -65,10 +73,12 @@
         </ul>
     </div>
 
-    <!-- CONTENT AREA -->
+    <!-- ============ CONTENT AREA ============ -->
     <div class="content">
+        {% block content %}
         <h2>Welcome to CRM Dashboard</h2>
         <p>Select a module from the left menu.</p>
+        {% endblock %}
     </div>
 
 </div>
