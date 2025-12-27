@@ -1,10 +1,7 @@
-document.querySelectorAll('.tree > li > span').forEach(item => {
-  item.addEventListener('click', function () {
-    this.parentElement.classList.toggle('open');
-  });
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".toggle").forEach(function (toggle) {
+        toggle.addEventListener("click", function () {
+            this.parentElement.classList.toggle("open");
+        });
+    });
 });
-
-function loadPage(page) {
-  document.getElementById("content").innerHTML =
-    "<h2>" + page + " page loaded</h2>";
-}
