@@ -1,90 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Unit Booking</title>
-<style>
-body{
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:#e9edf2;
-    padding:20px;
-}
-.container{
-    background:#fff;
-    padding:15px;
-    border-radius:6px;
-    max-width:1200px;
-    margin:auto;
-}
-h1{
-    text-align:center;
-    color:#0a58ca;
-    margin-bottom:15px;
-}
-fieldset{
-    border:1px solid #9aa4b1;
-    padding:12px;
-    margin-bottom:15px;
-}
-legend{
-    font-weight:bold;
-    color:#0a58ca;
-    padding:0 6px;
-}
-.grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:10px;
-}
-.grid-2{
-    display:grid;
-    grid-template-columns: 2fr 1fr;
-    gap:15px;
-}
-.grid-3{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:10px;
-}
-label{
-    font-size:13px;
-    font-weight:600;
-}
-input, select{
-    width:100%;
-    padding:6px;
-    border:1px solid #bbb;
-    border-radius:4px;
-}
-input[readonly]{
-    background:#f3f3f3;
-}
-.full{
-    grid-column: span 4;
-}
-.buttons{
-    text-align:right;
-    margin-top:10px;
-}
-button{
-    padding:6px 16px;
-    font-size:14px;
-    border:none;
-    border-radius:4px;
-    cursor:pointer;
-}
-.save{
-    background:#0a58ca;
-    color:#fff;
-}
-.close{
-    background:#6c757d;
-    color:#fff;
-}
-</style>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
 <div class="container">
 
@@ -250,10 +166,9 @@ button{
 
 <div class="buttons">
     <button class="save">Save</button>
-    <button class="close">Close</button>
+    <a href="{{ url_for('dashboard') }}" class="close">Close</a>
 </div>
 
 </div>
 
-</body>
-</html>
+{% endblock %}
