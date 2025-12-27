@@ -51,28 +51,58 @@ body {
 .tree,
 .tree ul {
     list-style: none;
-    padding-left: 15px;
+    padding-left: 0; /* remove default padding */
     margin: 0;
 }
 
 .tree ul {
-    display: none; /* HIDE CHILDREN */
+    display: none; /* hide children by default */
+    padding-left: 20px; /* indent nested items */
 }
 
 .tree li {
-    margin: 6px 0;
+    margin: 4px 0;
+    position: relative;
 }
 
+/* Add expand/collapse indicator */
+.tree li::before {
+    content: "▸"; /* arrow icon */
+    display: inline-block;
+    width: 1em;
+    cursor: pointer;
+    color: #666;
+    margin-right: 5px;
+}
+
+/* Open state */
+.node.open > ul {
+    display: block;
+}
+
+.node.open::before {
+    content: "▾"; /* down arrow when open */
+}
+
+/* Links */
 .tree a {
     text-decoration: none;
     color: #333;
-    padding: 4px;
+    padding: 6px 10px; /* better clickable area */
     display: block;
+    border-radius: 4px; /* subtle rounding */
 }
 
 .tree a:hover {
     background: #e6eef6;
 }
+
+/* Optional: Active / selected node */
+.tree a.active {
+    background: #cddbf0;
+    font-weight: bold;
+}
+
 
 .toggle {
     cursor: pointer;
