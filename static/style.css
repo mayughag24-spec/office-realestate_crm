@@ -172,133 +172,209 @@ table td {
     text-align: center;
 }
 
-/* Form Container */
-#bookingForm {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
-    max-width: 1000px;
-    margin: 0 auto;
+/* Container for sidebar + content */
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
-/* Fieldsets */
-#bookingForm fieldset {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 6px;
+/* Sidebar styling */
+.sidebar {
+  width: 220px; /* Fixed width */
+  background-color: #f0f4f8;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
 }
 
-/* Legends */
-#bookingForm legend {
-    font-weight: bold;
-    color: #004080;
+/* Sidebar tree */
+.tree, .tree ul {
+  list-style-type: none;
+  padding-left: 10px;
+  margin: 0;
 }
 
-/* Form Rows */
+.tree li {
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.tree li.node > .toggle {
+  font-weight: bold;
+  user-select: none;
+}
+
+.tree li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.tree li a:hover {
+  background-color: #cce4ff;
+}
+
+/* Highlight selected or active items */
+.tree li a.active, .tree li a:focus {
+  background-color: #004080;
+  color: white;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  padding: 20px 40px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/* Header fix */
+.header {
+  background-color: #a9bedf;
+  color: #000;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo.left {
+  height: 40px;
+  margin-left: 15px;
+}
+
+.logo.right {
+  height: 40px;
+  margin-right: 15px;
+}
+
+/* Form inputs */
+input, select, textarea {
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Label spacing in forms */
+label {
+  font-weight: bold;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+/* Fix form row alignment (flexbox) */
 .form-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .form-row label {
-    width: 120px;
-    font-weight: bold;
+  min-width: 110px;
 }
 
-.form-row input,
-.form-row select,
-.form-row textarea {
-    padding: 5px 8px;
-    margin-right: 20px;
-    flex: 1;
-    min-width: 150px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.form-row input, .form-row select, .form-row textarea {
+  flex-grow: 1;
+  min-width: 150px;
+  margin-right: 20px;
 }
 
-.form-row textarea {
-    height: 60px;
-    resize: vertical;
+textarea {
+  resize: vertical;
+  min-height: 60px;
 }
 
-/* Tabs */
-.tab-buttons {
-    margin-bottom: 15px;
-}
-
+/* Tabs for applicant info */
 .tab-buttons button {
-    padding: 6px 12px;
-    margin-right: 5px;
-    border: 1px solid #004080;
-    background-color: #fff;
-    color: #004080;
-    cursor: pointer;
-    border-radius: 4px;
+  padding: 6px 12px;
+  border: 1px solid #004080;
+  background-color: #e0e8ff;
+  color: #004080;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  margin-right: 4px;
+  font-weight: bold;
 }
 
 .tab-buttons button.active {
-    background-color: #004080;
-    color: #fff;
+  background-color: #004080;
+  color: white;
+  cursor: default;
 }
 
-/* Applicant Tabs */
+/* Applicant tabs */
 .applicant-tab {
-    display: none;
+  border: 1px solid #004080;
+  padding: 15px;
+  display: none;
+  border-radius: 0 4px 4px 4px;
+  background-color: #f5f8ff;
 }
 
 .applicant-tab.active {
-    display: block;
+  display: block;
 }
 
 /* Buttons */
-.button-row {
-    margin-top: 20px;
-}
-
-button.save-btn,
-button.close-btn {
-    padding: 8px 16px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #fff;
-    font-weight: bold;
-}
-
 button.save-btn {
-    background-color: #004080;
+  background-color: #004080;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 button.close-btn {
-    background-color: #888;
+  background-color: #999;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
+}
+
+/* Scrollbar for sidebar if overflow */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 /* Responsive */
-@media (max-width: 800px) {
-    .form-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
 
-    .form-row label {
-        width: 100%;
-        margin-bottom: 4px;
-    }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
 
-    .form-row input,
-    .form-row select,
-    .form-row textarea {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
+  .content {
+    padding: 20px 15px;
+  }
 }
