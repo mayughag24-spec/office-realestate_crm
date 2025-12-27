@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     // TREE TOGGLE
     document.querySelectorAll(".toggle").forEach(function (toggle) {
         toggle.addEventListener("click", function () {
@@ -11,9 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".load-content").forEach(function (link) {
         link.addEventListener("click", function (e) {
             e.preventDefault();
-
             const url = this.getAttribute("data-url");
-
             fetch(url)
                 .then(response => response.text())
                 .then(html => {
@@ -24,5 +21,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     });
-
 });
