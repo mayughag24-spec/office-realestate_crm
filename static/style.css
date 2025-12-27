@@ -258,11 +258,14 @@ table td {
 }
 
 /* Form inputs */
-input, select, textarea {
-  font-size: 14px;
+.form-row input, .form-row select, .form-row textarea {
+  flex-grow: 1;
+  min-width: 150px;
+  margin-right: 20px;
   padding: 6px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 /* Label spacing in forms */
