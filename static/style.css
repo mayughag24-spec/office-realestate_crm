@@ -1,10 +1,10 @@
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial;
+    font-family: Segoe UI, Arial;
     background: #f4f6f9;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 .header {
     height: 70px;
     background-color: #a9bfd4;
@@ -17,22 +17,28 @@ body {
 .header-title {
     font-size: 20px;
     font-weight: bold;
-    text-align: center;
-    flex: 1;
 }
 
 .logo {
     height: 60px;
-    width: 160px;
+    max-width: 160px;
     object-fit: contain;
 }
 
-/* ================= LAYOUT ================= */
-.layout {
+.logo.left {
+    margin-right: auto;
+}
+
+.logo.right {
+    margin-left: auto;
+}
+
+/* LAYOUT */
+.container {
     display: flex;
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
     background: #ffffff;
@@ -42,171 +48,52 @@ body {
     padding: 10px;
 }
 
-/* ================= TREE VIEW ================= */
+/* TREE VIEW */
 .tree,
 .tree ul {
     list-style: none;
-    padding-left: 20px;
+    padding-left: 15px;
     margin: 0;
-    position: relative;
 }
 
-.tree ul::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10px;
-    bottom: 0;
-    width: 1px;
-    background: #ccc;
+.tree ul {
+    display: none; /* HIDE CHILDREN */
 }
 
 .tree li {
-    position: relative;
-    padding-left: 20px;
-}
-
-.tree li::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 0;
-    width: 10px;
-    height: 1px;
-    background: #ccc;
+    margin: 6px 0;
 }
 
 .tree a {
-    display: block;
     text-decoration: none;
     color: #333;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 4px;
+    display: block;
 }
 
 .tree a:hover {
     background: #e6eef6;
 }
 
-.tree a.active {
-    background: #cddbf0;
-    font-weight: bold;
-}
-
 .toggle {
     cursor: pointer;
     font-weight: bold;
+    padding: 4px;
+    display: block;
 }
 
-.node > ul {
-    display: none;
+.toggle:hover {
+    background: #e6eef6;
 }
 
+/* OPEN STATE */
 .node.open > ul {
     display: block;
 }
 
-.node::after {
-    content: "▸";
-    position: absolute;
-    left: -15px;
-    top: 6px;
-}
-
-.node.open::after {
-    content: "▾";
-}
-
-/* ================= CONTENT ================= */
+/* CONTENT */
 .content {
     flex: 1;
     padding: 20px;
     background: #f9f9f9;
-}
-
-/* =====================================================
-   =============== UNIT BOOKING FORM ===================
-   ===================================================== */
-
-.booking-container {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 6px;
-    max-width: 1200px;
-}
-
-.booking-container h1 {
-    text-align: center;
-    color: #0a58ca;
-}
-
-fieldset {
-    border: 1px solid #9aa4b1;
-    padding: 12px;
-    margin-bottom: 15px;
-}
-
-legend {
-    font-weight: bold;
-    color: #0a58ca;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 15px;
-}
-
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.full {
-    grid-column: span 4;
-}
-
-label {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #bbb;
-    border-radius: 4px;
-}
-
-input[readonly] {
-    background: #f3f3f3;
-}
-
-.buttons {
-    text-align: right;
-}
-
-button {
-    padding: 6px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.save {
-    background: #0a58ca;
-    color: #fff;
-}
-
-.close {
-    background: #6c757d;
-    color: #fff;
 }
