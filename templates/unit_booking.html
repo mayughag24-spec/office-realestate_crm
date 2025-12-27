@@ -177,6 +177,9 @@ function clearForm() {
     document.getElementById('furniture').value='';
 }
 
+if (!window.unitBookingInitialized) {
+    initForm();
+    window.unitBookingInitialized = true;
+}
 
-initForm();
 </script>
