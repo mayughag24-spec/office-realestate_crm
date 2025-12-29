@@ -271,13 +271,19 @@ document.addEventListener("click", function (e) {
 
     const num = btn.dataset.app;
 
-    document.querySelectorAll(".applicant-tab").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".tab-buttons button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".applicant-tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    document.querySelectorAll(".tab-buttons button").forEach(button => {
+        button.classList.remove("active");
+    });
 
     document.getElementById("applicant" + num).classList.add("active");
     btn.classList.add("active");
 });
 </script>
+
 
 </body>
 </html>
