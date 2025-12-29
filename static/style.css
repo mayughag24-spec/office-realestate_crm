@@ -311,6 +311,12 @@ table td {
         flex-direction: column;
     }
 }
+@media (max-width: 900px) {
+    .form-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 500px) {
     .form-grid-4 {
         grid-template-columns: 1fr;
