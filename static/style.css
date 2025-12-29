@@ -125,15 +125,19 @@ textarea {
 }
 
 /* BUTTONS */
-button.save-btn {
+.save-btn {
     background-color: #004080;
     color: white;
-    padding: 8px 18px;
+}
+
+
+.save-btn, .close-btn {
+    padding: 10px 20px;
+    margin: 5px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    margin-right: 10px;
+    font-size: 16px;
 }
 
 button.close-btn {
