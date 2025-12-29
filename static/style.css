@@ -285,3 +285,42 @@ table td {
 .tree li.node.open > ul {
     display: block;
 }
+/* ===== 4 COLUMN NAME LAYOUT ===== */
+.form-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-grid-4 .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grid-4 label {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.form-grid-4 input,
+.form-grid-4 select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .form-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .form-grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
