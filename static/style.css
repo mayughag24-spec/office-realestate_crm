@@ -45,7 +45,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
+    width: 280px;
     background: #f0f4f8;
     padding: 20px;
     overflow-y: auto;
@@ -53,38 +53,6 @@ body {
     box-sizing: border-box;
 }
 
-/* TREE VIEW */
-.tree, .tree ul {
-    list-style: none;
-    padding-left: 10px;
-    margin: 0;
-}
-
-.tree li {
-    padding: 4px 0;
-    cursor: pointer;
-}
-
-.tree li.node > .toggle {
-    font-weight: bold;
-    user-select: none;
-}
-
-.tree li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.tree li a:hover {
-    background-color: #cce4ff;
-}
-
-.node.open > ul {
-    display: block;
-}
 
 /* CONTENT AREA */
 .content {
