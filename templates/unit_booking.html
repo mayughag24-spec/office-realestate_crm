@@ -1,8 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Unit Booking</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Container */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #004080;
+            padding: 0 10px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .form-row label {
+            min-width: 120px;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            flex: 1;
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .form-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tab-buttons {
+            margin-bottom: 10px;
+        }
+
+        .tab-buttons button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: 1px solid #004080;
+            background: white;
+            color: #004080;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .tab-buttons button.active {
+            background: #004080;
+            color: white;
+        }
+
+        .applicant-tab { display: none; }
+        .applicant-tab.active { display: block; }
+
+        .button-row {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-row button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: #004080;
+            font-size: 16px;
+        }
+
+        .button-row .close-btn {
+            background-color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label {
+                min-width: 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -11,14 +127,14 @@
 
     <form id="bookingForm">
 
-        <!-- Booking Date & Sales Executive -->
+        <!-- Booking & Executive -->
         <fieldset>
             <div class="form-row">
-                <label>Booking Date</label>
-                <input type="date" required>
+                <label for="bookingDate">Booking Date</label>
+                <input type="date" id="bookingDate" name="bookingDate" required>
 
-                <label>Sales Executive</label>
-                <select required>
+                <label for="salesExecutive">Sales Executive</label>
+                <select id="salesExecutive" name="salesExecutive" required>
                     <option value="">Select</option>
                     <option>Executive 1</option>
                     <option>Executive 2</option>
@@ -36,223 +152,196 @@
                 <button type="button" onclick="showApplicant(3,event)">Applicant 3</button>
             </div>
 
-            <!-- ================= APPLICANT 1 ================= -->
+            <!-- Applicant 1 -->
             <div id="applicant1" class="applicant-tab active">
-
-                <!-- NAME ROW -->
                 <div class="form-grid-4">
-                    <div class="form-group">
+                    <div>
                         <label>Salutation</label>
-                        <select>
+                        <select name="app1Salutation" required>
+                            <option value="">Select</option>
                             <option>Mr.</option><option>Mrs.</option><option>Ms.</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>First Name</label>
-                        <input type="text" required>
+                        <input type="text" name="app1FirstName" required>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Middle Name</label>
-                        <input type="text">
+                        <input type="text" name="app1MiddleName">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Last Name</label>
-                        <input type="text" required>
+                        <input type="text" name="app1LastName" required>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <label>Occupation</label>
-                    <select>
-                        <option>Employed</option>
-                        <option>Self-Employed</option>
+                    <select name="app1Occupation" required>
+                        <option value="">Select</option>
+                        <option>Employed</option><option>Self-Employed</option>
                     </select>
-
                     <label>Age</label>
-                    <input type="number">
+                    <input type="number" name="app1Age" min="0">
                 </div>
-
                 <div class="form-row">
                     <label>Mobile</label>
-                    <input type="text">
-
+                    <input type="tel" name="app1Mobile">
                     <label>Email</label>
-                    <input type="email">
-
+                    <input type="email" name="app1Email">
                     <label>PAN</label>
-                    <input type="text">
-
+                    <input type="text" name="app1PAN">
                     <label>Aadhaar</label>
-                    <input type="text">
+                    <input type="text" name="app1Aadhaar">
                 </div>
-
                 <div class="form-row">
                     <label>Address</label>
-                    <textarea></textarea>
+                    <textarea name="app1Address" rows="2"></textarea>
                 </div>
             </div>
 
-            <!-- ================= APPLICANT 2 ================= -->
+            <!-- Applicant 2 -->
             <div id="applicant2" class="applicant-tab">
-
                 <div class="form-grid-4">
-                    <div class="form-group">
+                    <div>
                         <label>Salutation</label>
-                        <select>
+                        <select name="app2Salutation">
+                            <option value="">Select</option>
                             <option>Mr.</option><option>Mrs.</option><option>Ms.</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>First Name</label>
-                        <input type="text">
+                        <input type="text" name="app2FirstName">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Middle Name</label>
-                        <input type="text">
+                        <input type="text" name="app2MiddleName">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Last Name</label>
-                        <input type="text">
+                        <input type="text" name="app2LastName">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <label>Mobile</label>
-                    <input type="text">
+                    <input type="tel" name="app2Mobile">
                     <label>Email</label>
-                    <input type="email">
+                    <input type="email" name="app2Email">
                 </div>
             </div>
 
-            <!-- ================= APPLICANT 3 ================= -->
+            <!-- Applicant 3 -->
             <div id="applicant3" class="applicant-tab">
-
                 <div class="form-grid-4">
-                    <div class="form-group">
+                    <div>
                         <label>Salutation</label>
-                        <select>
+                        <select name="app3Salutation">
+                            <option value="">Select</option>
                             <option>Mr.</option><option>Mrs.</option><option>Ms.</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>First Name</label>
-                        <input type="text">
+                        <input type="text" name="app3FirstName">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Middle Name</label>
-                        <input type="text">
+                        <input type="text" name="app3MiddleName">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label>Last Name</label>
-                        <input type="text">
+                        <input type="text" name="app3LastName">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <label>Mobile</label>
-                    <input type="text">
+                    <input type="tel" name="app3Mobile">
                     <label>Email</label>
-                    <input type="email">
+                    <input type="email" name="app3Email">
                 </div>
             </div>
-
         </fieldset>
 
-<!-- Payment Details -->
-<fieldset>
-    <legend style="color:#004080;">Payment Details</legend>
+        <!-- Payment Details -->
+        <fieldset>
+            <legend>Payment Details</legend>
+            <div class="form-row">
+                <label for="bookingAmount">Booking Amount</label>
+                <input type="number" id="bookingAmount" name="bookingAmount" required min="0">
+                <label for="paymentMode">Payment Mode</label>
+                <select id="paymentMode" name="paymentMode" required>
+                    <option value="">Select</option>
+                    <option>Cash</option><option>Cheque</option><option>Online Transfer</option><option>Demand Draft</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="chequeNo">Cheque/TRN No</label>
+                <input type="text" id="chequeNo" name="chequeNo">
+                <label for="chequeDate">Cheque/TRN Date</label>
+                <input type="date" id="chequeDate" name="chequeDate">
+            </div>
+            <div class="form-row">
+                <label for="bankName">Bank Name</label>
+                <select id="bankName" name="bankName">
+                    <option value="">Select</option>
+                    <option>Bank A</option><option>Bank B</option><option>Bank C</option>
+                </select>
+            </div>
+        </fieldset>
 
-    <div class="form-row">
-        <label for="bookingAmount">Booking Amount</label>
-        <input type="number" id="bookingAmount" name="bookingAmount" required />
+        <!-- Unit & Cost Details -->
+        <fieldset>
+            <div class="form-row">
+                <label for="wing">Wing</label>
+                <select id="wing" name="wing" required></select>
+                <label for="floor">Floor</label>
+                <select id="floor" name="floor" required></select>
+                <label for="unitType">Unit Type</label>
+                <select id="unitType" name="unitType" required></select>
+                <label for="unitNumber">Unit Number</label>
+                <select id="unitNumber" name="unitNumber" required></select>
+                <label for="carpet">Carpet</label>
+                <input type="number" id="carpet" name="carpet" readonly>
+            </div>
+            <div class="form-row">
+                <label for="agreementCost">Agreement Cost</label>
+                <input type="number" id="agreementCost" name="agreementCost" required min="0">
+                <label for="gst">GST</label>
+                <input type="number" id="gst" name="gst" readonly>
+                <label for="stampDuty">Stamp Duty</label>
+                <input type="number" id="stampDuty" name="stampDuty" readonly>
+                <label for="registration">Registration</label>
+                <input type="number" id="registration" name="registration" readonly>
+            </div>
+            <div class="form-row">
+                <label for="furnitureCharges">Furniture Charges</label>
+                <input type="number" id="furnitureCharges" name="furnitureCharges" min="0">
+                <label for="actualPackage">Actual Package</label>
+                <input type="number" id="actualPackage" name="actualPackage" readonly>
+                <label for="packageTotal">Package Total</label>
+                <input type="number" id="packageTotal" name="packageTotal" readonly>
+                <label for="parkingType">Parking Type</label>
+                <select id="parkingType" name="parkingType"></select>
+            </div>
+            <div class="form-row">
+                <label for="source">Source</label>
+                <input type="text" id="source" name="source">
+            </div>
+        </fieldset>
 
-        <label for="paymentMode" style="margin-left: 40px;">Payment Mode</label>
-        <select id="paymentMode" name="paymentMode" required>
-            <option value="">Select</option>
-            <option>Cash</option>
-            <option>Cheque</option>
-            <option>Online Transfer</option>
-            <option>Demand Draft</option>
-        </select>
-    </div>
-
-    <div class="form-row">
-        <label for="chequeNo">Cheque/TRN No</label>
-        <input type="text" id="chequeNo" name="chequeNo" />
-
-        <label for="chequeDate" style="margin-left: 20px;">Cheque/TRN Date</label>
-        <input type="date" id="chequeDate" name="chequeDate" />
-    </div>
-
-    <div class="form-row">
-        <label for="bankName">Bank Name</label>
-        <select id="bankName" name="bankName">
-            <option value="">Select</option>
-            <option>Bank A</option>
-            <option>Bank B</option>
-            <option>Bank C</option>
-        </select>
-    </div>
-</fieldset>
-<div class="form-row">
-    <label for="wing">Wing</label>
-    <select id="wing" name="wing" required></select>
-
-    <label for="floor">Floor</label>
-    <select id="floor" name="floor" required></select>
-
-    <label for="unitType">Unit Type</label>
-    <select id="unitType" name="unitType" required></select>
-
-    <label for="unitNumber">Unit Number</label>
-    <select id="unitNumber" name="unitNumber" required></select>
-
-    <label for="carpet">Carpet</label>
-    <input type="number" id="carpet" name="carpet" readonly />
-</div>
-<div class="form-row">
-    <label for="agreementCost">Agreement Cost</label>
-    <input type="number" id="agreementCost" name="agreementCost" required />
-
-    <label for="gst">GST</label>
-    <input type="number" id="gst" name="gst" readonly />
-
-    <label for="stampDuty">Stamp Duty</label>
-    <input type="number" id="stampDuty" name="stampDuty" readonly />
-
-    <label for="registration">Registration</label>
-    <input type="number" id="registration" name="registration" readonly />
-</div>
-<div class="form-row">
-    <label for="furnitureCharges">Furniture Charges</label>
-    <input type="number" id="furnitureCharges" name="furnitureCharges" />
-
-    <label for="actualPackage">Actual Package</label>
-    <input type="number" id="actualPackage" name="actualPackage" readonly />
-
-    <label for="packageTotal">Package Total</label>
-    <input type="number" id="packageTotal" name="packageTotal" readonly />
-
-    <label for="parkingType">Parking Type</label>
-    <select id="parkingType" name="parkingType"></select>
-</div>
-<div class="form-row">
-    <label for="source">Source</label>
-    <input type="text" id="source" name="source" />
-</div>
-
-        <!-- Buttons -->
         <div class="button-row">
-            <button class="save-btn">Save</button>
+            <button type="submit">Save</button>
             <button type="button" class="close-btn">Close</button>
         </div>
 
     </form>
 </div>
+
 <script>
 function showApplicant(num, e) {
-    document.querySelectorAll('.applicant-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-buttons button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.applicant-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
     document.getElementById('applicant' + num).classList.add('active');
     e.target.classList.add('active');
 }
