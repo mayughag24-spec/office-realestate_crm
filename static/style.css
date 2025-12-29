@@ -289,3 +289,32 @@ table td {
 .applicant-tab.active {
     display: block;
 }
+/* TREE TOGGLE ARROW */
+.tree li.node > .toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tree li.node > .toggle::before {
+    content: "▶";
+    font-size: 11px;
+    margin-right: 6px;
+    transition: transform 0.2s ease;
+}
+
+/* OPEN STATE */
+.tree li.node.open > .toggle::before {
+    content: "▼";
+}
+
+/* HIDE CHILD NODES BY DEFAULT */
+.tree li.node > ul {
+    display: none;
+}
+
+/* SHOW WHEN OPEN */
+.tree li.node.open > ul {
+    display: block;
+}
