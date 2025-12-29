@@ -265,12 +265,24 @@
 
 <script>
 function showApplicant(num, e) {
-    document.querySelectorAll('.applicant-tab').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+    e.preventDefault();
+
+    // hide all applicant sections
+    document.querySelectorAll('.applicant-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // deactivate all buttons
+    document.querySelectorAll('.tab-buttons button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // activate selected
     document.getElementById('applicant' + num).classList.add('active');
-    e.target.classList.add('active');
+    e.currentTarget.classList.add('active');
 }
 </script>
+
 
 </body>
 </html>
