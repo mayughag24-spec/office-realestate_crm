@@ -93,6 +93,13 @@ textarea {
     min-height: 60px;
     resize: vertical;
 }
+.form-row input,
+.form-row select {
+    height: 36px;
+    padding: 6px 8px;
+    line-height: normal;
+    box-sizing: border-box;
+}
 
 /* TABS */
 .tab-buttons button {
