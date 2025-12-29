@@ -303,11 +303,6 @@ table td {
     flex: 1 1 150px; /* responsive width */
 }
 
-textarea {
-    resize: vertical;
-}
-
-
 
 
 /* Responsive */
