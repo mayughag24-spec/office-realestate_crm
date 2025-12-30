@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+
+from flask import Flask, render_template, request, redirect
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -30,4 +32,18 @@ def payments():
     return render_template("payments.html")
 
 if __name__ == "__main__":
-    app.run()
+    
+    
+
+def get_db():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="YOUR_MYSQL_PASSWORD",
+        database="realestate_crm"
+    )
+
+@app.route("/")
+def booking():
+    return render_template("unit_booking.html")
+app.run()
