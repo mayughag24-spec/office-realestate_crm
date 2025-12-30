@@ -46,4 +46,84 @@ def get_db():
 @app.route("/")
 def booking():
     return render_template("unit_booking.html")
+    @app.route("/save_booking", methods=["POST"])
+def save_booking():
+    data = request.form
+    db = get_db()
+    cur = db.cursor()
+
+    # 1️⃣ Insert Unit Booking
+    cur.execute("""
+        INSERT INTO unit_booking
+        (booking_date, sales_executive, wing, floor, unit_type, unit_number,
+         carpet, agreement_cost, gst, stamp_duty, registration,
+         furniture_charges, actual_package, package_total, parking_type, source)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """, (
+        data["bookingDate"],
+        data["salesExecutive"],
+        data["wing"],
+        data["floor"],
+        data["unitType"],
+        data["unitNumber"],
+        data["carpet"],
+        data["agreementCost"],
+        data["gst"],
+        data["stampDuty"],
+        data["registration"],
+        data["furnitureCharges"],
+        data["actualPackage"],
+        data["packageTotal"],
+        data["parkingType"],
+        data["source"]
+    ))
+
+    booking_id = cur.lastrowid
+
+    # 2️⃣ Insert Applicants
+    for i in [1, 2, 3]:
+        if data.get(f"app{i}FirstName"):
+            cur.execute("""
+                INSERT INTO booking_applicants
+                (booking_id, applicant_no, salutation, first_name,
+                 middle_name, last_name, occupation, age, mobile,
+                 email, pan, aadhaar, address)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """, (
+                booking_id,
+                i,
+                data.get(f"app{i}Salutation"),
+                data.get(f"app{i}FirstName"),
+                data.get(f"app{i}MiddleName"),
+                data.get(f"app{i}LastName"),
+                data.get(f"app{i}Occupation"),
+                data.get(f"app{i}Age"),
+                data.get(f"app{i}Mobile"),
+                data.get(f"app{i}Email"),
+                data.get(f"app{i}PAN"),
+                data.get(f"app{i}Aadhaar"),
+                data.get(f"app{i}Address")
+            ))
+
+    # 3️⃣ Insert Payment
+    cur.execute("""
+        INSERT INTO booking_payments
+        (booking_id, booking_amount, payment_mode,
+         cheque_trn_no, cheque_trn_date, bank_name)
+        VALUES (%s,%s,%s,%s,%s,%s)
+    """, (
+        booking_id,
+        data["bookingAmount"],
+        data["paymentMode"],
+        data.get("chequeNo"),
+        data.get("chequeDate"),
+        data.get("bankName")
+    ))
+
+    db.commit()
+    cur.close()
+    db.close()
+
+    return redirect("/")
+
 app.run()
