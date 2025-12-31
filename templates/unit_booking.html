@@ -1,80 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Unit Booking</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<title>Unit Booking</title>
 
 <style>
-.button-row button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    background-color: #004080;
-    font-size: 16px;
-}
-.button-row .close-btn {
-    background-color: #888;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
 }
 
-/* TAB LOGIC */
-.applicant-tab { display: none; }
-.applicant-tab.active { display: block; }
+.content {
+    width: 85%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+/* FIELDSET */
+fieldset {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+/* GRID LAYOUTS */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.unit-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+/* INPUTS */
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* TABS */
+.tab-buttons {
+    margin-bottom: 15px;
+}
 
 .tab-buttons button {
     padding: 8px 15px;
     border: none;
     background: #ccc;
     cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px;
 }
+
 .tab-buttons button.active {
     background: #004080;
+    color: #fff;
+}
+
+.applicant-tab {
+    display: none;
+}
+
+.applicant-tab.active {
+    display: block;
+}
+
+/* BUTTONS */
+.button-row {
+    margin-top: 20px;
+}
+
+.button-row button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     color: white;
-}
-    form fieldset {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
+    font-size: 15px;
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 10px;
+.button-row .save-btn {
+    background-color: #004080;
 }
 
-.form-grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+.button-row .close-btn {
+    background-color: #888;
 }
-
-select, input, textarea {
-    padding: 8px;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
 </style>
 </head>
 
 <body>
+
 <div class="content">
 <h2>UNIT BOOKING</h2>
 
-<form id="bookingForm" method="POST" action="/save_booking">
+<form method="POST">
 
-<!-- Booking Info -->
+<!-- BOOKING INFO -->
 <fieldset>
 <div class="form-row">
+<div>
 <label>Booking Date</label>
 <input type="date" name="bookingDate" required>
+</div>
 
+<div>
 <label>Sales Executive</label>
 <select name="salesExecutive" required>
 <option value="">Select</option>
@@ -82,135 +137,131 @@ select, input, textarea {
 <option>Executive 2</option>
 </select>
 </div>
+</div>
 </fieldset>
 
-<!-- Applicant Tabs -->
+<!-- APPLICANT INFO -->
 <fieldset>
 <legend>Applicant Info</legend>
 
 <div class="tab-buttons">
-<button type="button" data-app="1" class="active">Applicant 1</button>
+<button type="button" class="active" data-app="1">Applicant 1</button>
 <button type="button" data-app="2">Applicant 2</button>
 <button type="button" data-app="3">Applicant 3</button>
 </div>
 
-<!-- Applicant 1 -->
+<!-- APPLICANT 1 -->
 <div id="applicant1" class="applicant-tab active">
 <div class="form-grid-4">
-<select name="app1Salutation" required>
-<option value="">Select</option>
-<option>Mr.</option><option>Mrs.</option><option>Ms.</option>
-</select>
-<input type="text" name="app1FirstName" placeholder="First Name" required>
-<input type="text" name="app1MiddleName" placeholder="Middle Name">
-<input type="text" name="app1LastName" placeholder="Last Name" required>
+<select><option>Mr.</option><option>Mrs.</option><option>Ms.</option></select>
+<input type="text" placeholder="First Name">
+<input type="text" placeholder="Middle Name">
+<input type="text" placeholder="Last Name">
 </div>
 
 <div class="form-row">
-<select name="app1Occupation" required>
-<option value="">Occupation</option>
-<option>Employed</option>
-<option>Self-Employed</option>
-</select>
-<input type="number" name="app1Age" placeholder="Age">
+<select><option>Occupation</option></select>
+<input type="number" placeholder="Age">
 </div>
 
 <div class="form-row">
-<input type="tel" name="app1Mobile" placeholder="Mobile">
-<input type="email" name="app1Email" placeholder="Email">
-<input type="text" name="app1PAN" placeholder="PAN">
-<input type="text" name="app1Aadhaar" placeholder="Aadhaar">
+<input type="tel" placeholder="Mobile">
+<input type="email" placeholder="Email">
+<input type="text" placeholder="PAN">
+<input type="text" placeholder="Aadhaar">
 </div>
 
-<textarea name="app1Address" rows="2" placeholder="Address"></textarea>
+<textarea rows="2" placeholder="Address"></textarea>
 </div>
 
-<!-- Applicant 2 -->
+<!-- APPLICANT 2 -->
 <div id="applicant2" class="applicant-tab">
-<input type="text" name="app2FirstName" placeholder="First Name">
-<input type="text" name="app2LastName" placeholder="Last Name">
-<input type="tel" name="app2Mobile" placeholder="Mobile">
-<input type="email" name="app2Email" placeholder="Email">
+<div class="form-row">
+<input placeholder="First Name">
+<input placeholder="Last Name">
+<input placeholder="Mobile">
+<input placeholder="Email">
+</div>
 </div>
 
-<!-- Applicant 3 -->
+<!-- APPLICANT 3 -->
 <div id="applicant3" class="applicant-tab">
-<input type="text" name="app3FirstName" placeholder="First Name">
-<input type="text" name="app3LastName" placeholder="Last Name">
-<input type="tel" name="app3Mobile" placeholder="Mobile">
-<input type="email" name="app3Email" placeholder="Email">
+<div class="form-row">
+<input placeholder="First Name">
+<input placeholder="Last Name">
+<input placeholder="Mobile">
+<input placeholder="Email">
 </div>
+</div>
+
 </fieldset>
 
-<!-- Payment -->
+<!-- PAYMENT -->
 <fieldset>
 <legend>Payment Details</legend>
-<input type="number" name="bookingAmount" placeholder="Booking Amount" required>
-<select name="paymentMode">
-<option value="">Payment Mode</option>
-<option>Cash</option>
-<option>Cheque</option>
-<option>Online Transfer</option>
-<option>Demand Draft</option>
-</select>
-<input type="text" name="chequeNo" placeholder="Cheque / TRN No">
-<input type="date" name="chequeDate">
-<select name="bankName">
-<option value="">Bank</option>
-<option>Bank A</option>
-<option>Bank B</option>
-<option>Bank C</option>
-</select>
+
+<div class="form-row">
+<input type="number" placeholder="Booking Amount">
+<select><option>Payment Mode</option></select>
+<input placeholder="Cheque / TRN No">
+<input type="date">
+</div>
+
+<div class="form-row">
+<select><option>Bank Name</option></select>
+</div>
 </fieldset>
 
-<!-- Unit Details -->
+<!-- UNIT DETAILS -->
 <fieldset>
 <legend>Unit Details</legend>
 
-<div class="form-row">
-<select name="wing" required>
-<option value="">Wing</option>
-<option>A</option><option>B</option><option>C</option>
-</select>
-
-<select name="floor" required>
-<option value="">Floor</option>
-<option>1</option><option>2</option><option>3</option>
-</select>
-
-<select name="unitType" required>
-<option value="">Unit Type</option>
-<option>1BHK</option><option>2BHK</option><option>3BHK</option>
-</select>
-
-<select name="unitNumber" required>
-<option value="">Unit Number</option>
-<option>101</option><option>102</option><option>103</option>
-</select>
+<div class="unit-row">
+<div>
+<label>Wing</label>
+<select><option>A</option><option>B</option><option>C</option></select>
 </div>
 
-<input type="number" name="carpet" placeholder="Carpet Area" readonly>
+<div>
+<label>Floor</label>
+<select><option>1</option><option>2</option><option>3</option></select>
+</div>
+
+<div>
+<label>Unit Type</label>
+<select><option>1BHK</option><option>2BHK</option><option>3BHK</option></select>
+</div>
+
+<div>
+<label>Unit Number</label>
+<select><option>101</option><option>102</option><option>103</option></select>
+</div>
+
+<div>
+<label>Carpet</label>
+<input readonly>
+</div>
+</div>
 </fieldset>
 
-<!-- Buttons -->
+<!-- BUTTONS -->
 <div class="button-row">
-<button type="submit">Save</button>
-<button type="button" class="close-btn" onclick="window.location.href='/'">Close</button>
+<button class="save-btn">Save</button>
+<button type="button" class="close-btn">Close</button>
 </div>
 
 </form>
 </div>
 
 <script>
-document.addEventListener("click", function(e) {
-    const btn = e.target.closest(".tab-buttons button");
-    if (!btn) return;
+document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-buttons button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".applicant-tab").forEach(t => t.classList.remove("active"));
 
-    document.querySelectorAll(".applicant-tab").forEach(tab => tab.classList.remove("active"));
-    document.querySelectorAll(".tab-buttons button").forEach(b => b.classList.remove("active"));
-
-    document.getElementById("applicant" + btn.dataset.app).classList.add("active");
-    btn.classList.add("active");
+        btn.classList.add("active");
+        document.getElementById("applicant" + btn.dataset.app).classList.add("active");
+    });
 });
 </script>
 
