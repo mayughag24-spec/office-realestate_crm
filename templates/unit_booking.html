@@ -4,105 +4,7 @@
 <meta charset="UTF-8">
 <title>Unit Booking</title>
 
-<style>
-* { box-sizing: border-box; }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f4f7;
-    margin: 0;
-}
-
-.content {
-    width: 90%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 6px;
-}
-
-/* ---------- FIELDSET ---------- */
-fieldset {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-legend {
-    font-weight: bold;
-}
-
-/* ---------- GRID ---------- */
-.grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.grid-5 {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-}
-
-/* ---------- INPUTS ---------- */
-label {
-    font-size: 13px;
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    height: 36px;
-    font-size: 14px;
-}
-
-/* ---------- TABS ---------- */
-.tab-buttons {
-    margin-bottom: 15px;
-}
-
-.tab-buttons button {
-    padding: 8px 15px;
-    border: none;
-    background: #ccc;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-right: 5px;
-}
-
-.tab-buttons button.active {
-    background: #004080;
-    color: white;
-}
-
-.applicant {
-    display: none;
-}
-
-.applicant.active {
-    display: block;
-}
-
-/* ---------- BUTTONS ---------- */
-.button-row {
-    margin-top: 20px;
-}
-
-.button-row button {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-    color: white;
-}
-
-.save-btn { background: #004080; }
-.close-btn { background: #888; }
-</style>
 </head>
 
 <body>
@@ -112,9 +14,9 @@ input, select, textarea {
 
 <form>
 
-<!-- BOOKING -->
+<!-- BOOKING INFO -->
 <fieldset>
-<div class="grid-4">
+<div class="form-row">
 <div>
 <label>Booking Date</label>
 <input type="date">
@@ -131,27 +33,89 @@ input, select, textarea {
 </div>
 </fieldset>
 
-<!-- APPLICANTS -->
+<!-- APPLICANT INFO -->
 <fieldset>
 <legend>Applicant Info</legend>
 
 <div class="tab-buttons">
-<button type="button" class="tab active" data-id="1">Applicant 1</button>
-<button type="button" class="tab" data-id="2">Applicant 2</button>
-<button type="button" class="tab" data-id="3">Applicant 3</button>
+<button type="button" class="active" data-app="1">Applicant 1</button>
+<button type="button" data-app="2">Applicant 2</button>
+<button type="button" data-app="3">Applicant 3</button>
 </div>
 
-<div id="app1" class="applicant active">
-<div class="grid-4">
-<div><label>Salutation</label><select><option>Mr</option></select></div>
-<div><label>First Name</label><input></div>
-<div><label>Middle Name</label><input></div>
-<div><label>Last Name</label><input></div>
+<!-- APPLICANT 1 -->
+<div id="applicant1" class="applicant-tab active">
+
+<div class="form-grid-4">
+<div>
+<label>Salutation</label>
+<select>
+<option>Mr.</option>
+<option>Mrs.</option>
+<option>Ms.</option>
+</select>
+</div>
+
+<div>
+<label>First Name</label>
+<input>
+</div>
+
+<div>
+<label>Middle Name</label>
+<input>
+</div>
+
+<div>
+<label>Last Name</label>
+<input>
 </div>
 </div>
 
-<div id="app2" class="applicant">
-<div class="grid-4">
+<div class="form-row">
+<div>
+<label>Occupation</label>
+<select>
+<option>Employed</option>
+<option>Self-Employed</option>
+</select>
+</div>
+
+<div>
+<label>Age</label>
+<input type="number">
+</div>
+</div>
+
+<div class="form-row">
+<div>
+<label>Mobile</label>
+<input>
+</div>
+
+<div>
+<label>Email</label>
+<input>
+</div>
+
+<div>
+<label>PAN</label>
+<input>
+</div>
+
+<div>
+<label>Aadhaar</label>
+<input>
+</div>
+</div>
+
+<label>Address</label>
+<textarea rows="2"></textarea>
+</div>
+
+<!-- APPLICANT 2 -->
+<div id="applicant2" class="applicant-tab">
+<div class="form-row">
 <input placeholder="First Name">
 <input placeholder="Last Name">
 <input placeholder="Mobile">
@@ -159,8 +123,9 @@ input, select, textarea {
 </div>
 </div>
 
-<div id="app3" class="applicant">
-<div class="grid-4">
+<!-- APPLICANT 3 -->
+<div id="applicant3" class="applicant-tab">
+<div class="form-row">
 <input placeholder="First Name">
 <input placeholder="Last Name">
 <input placeholder="Mobile">
@@ -170,20 +135,97 @@ input, select, textarea {
 
 </fieldset>
 
-<!-- UNIT -->
+<!-- PAYMENT DETAILS -->
+<fieldset>
+<legend>Payment Details</legend>
+
+<div class="form-row">
+<div>
+<label>Booking Amount</label>
+<input type="number">
+</div>
+
+<div>
+<label>Payment Mode</label>
+<select>
+<option>Cash</option>
+<option>Cheque</option>
+<option>Online</option>
+</select>
+</div>
+
+<div>
+<label>Cheque / TRN No</label>
+<input>
+</div>
+
+<div>
+<label>Date</label>
+<input type="date">
+</div>
+</div>
+
+<div class="form-row">
+<div>
+<label>Bank Name</label>
+<select>
+<option>Select</option>
+<option>Bank A</option>
+<option>Bank B</option>
+</select>
+</div>
+</div>
+</fieldset>
+
+<!-- UNIT DETAILS -->
 <fieldset>
 <legend>Unit Details</legend>
 
-<div class="grid-5">
-<div><label>Wing</label><select><option>A</option><option>B</option></select></div>
-<div><label>Floor</label><select><option>1</option><option>2</option></select></div>
-<div><label>Unit Type</label><select><option>2BHK</option></select></div>
-<div><label>Unit No</label><select><option>101</option><option>102</option></select></div>
-<div><label>Carpet</label><input readonly></div>
+<div class="unit-row">
+<div>
+<label>Wing</label>
+<select>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+</select>
 </div>
 
+<div>
+<label>Floor</label>
+<select>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+</select>
+</div>
+
+<div>
+<label>Unit Type</label>
+<select>
+<option>1BHK</option>
+<option>2BHK</option>
+<option>3BHK</option>
+</select>
+</div>
+
+<div>
+<label>Unit Number</label>
+<select>
+<option>101</option>
+<option>102</option>
+<option>103</option>
+</select>
+</div>
+
+<div>
+<label>Carpet Area</label>
+<input readonly>
+</div>
+</div>
 </fieldset>
 
+<!-- BUTTONS -->
 <div class="button-row">
 <button class="save-btn">Save</button>
 <button type="button" class="close-btn">Close</button>
@@ -193,15 +235,14 @@ input, select, textarea {
 </div>
 
 <script>
-document.querySelectorAll(".tab").forEach(btn => {
-    btn.addEventListener("click", function () {
+document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.onclick = () => {
+        document.querySelectorAll(".tab-buttons button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".applicant-tab").forEach(t => t.classList.remove("active"));
 
-        document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
-        document.querySelectorAll(".applicant").forEach(a => a.classList.remove("active"));
-
-        this.classList.add("active");
-        document.getElementById("app" + this.dataset.id).classList.add("active");
-    });
+        btn.classList.add("active");
+        document.getElementById("applicant" + btn.dataset.app).classList.add("active");
+    };
 });
 </script>
 
