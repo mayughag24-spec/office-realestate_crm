@@ -14,27 +14,8 @@ function initTree() {
     });
 }
 
-/* ================= CONTENT LOADER ================= */
-function initContentLoader() {
-    document.querySelectorAll(".load-content").forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
 
-            const url = this.dataset.url;
-
-            fetch(url)
-                .then(res => res.text())
-                .then(html => {
-                    const content = document.querySelector(".content");
-                    content.innerHTML = html;
-
-                    // IMPORTANT: re-init JS after load
-                    reInitPageScripts();
-                })
-                .catch(err => console.error("Load error:", err));
-        });
-    });
-}
+    
 
 /* ================= PAGE-SPECIFIC RE-INIT ================= */
 function reInitPageScripts() {
