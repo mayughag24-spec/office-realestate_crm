@@ -37,10 +37,7 @@ def customers():
 def payments():
     return render_template("payments.html")
 
-# ================= UNIT BOOKING =================
-@app.route("/unit-booking")
-def unit_booking():
-    return render_template("unit_booking.html")
+
 
 # ================= SAVE BOOKING =================
 @app.route("/save_booking", methods=["POST"])
