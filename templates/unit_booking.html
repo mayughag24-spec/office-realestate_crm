@@ -14,19 +14,23 @@
         <!-- Booking Date & Sales Executive -->
         <fieldset>
             <div class="form-row">
-                <label>Booking Date</label>
-                <input type="date" required>
+                <div class="form-group">
+                    <label>Booking Date</label>
+                    <input type="date" required>
+                </div>
 
-                <label>Sales Executive</label>
-                <select required>
-                    <option value="">Select</option>
-                    <option>Executive 1</option>
-                    <option>Executive 2</option>
-                </select>
+                <div class="form-group">
+                    <label>Sales Executive</label>
+                    <select required>
+                        <option value="">Select</option>
+                        <option>Executive 1</option>
+                        <option>Executive 2</option>
+                    </select>
+                </div>
             </div>
         </fieldset>
 
-        <!-- Applicant Tabs -->
+        <!-- Applicant Info -->
         <fieldset>
             <legend>Applicant Info</legend>
 
@@ -36,10 +40,7 @@
                 <button type="button" onclick="showApplicant(3,event)">Applicant 3</button>
             </div>
 
-            <!-- ================= APPLICANT 1 ================= -->
             <div id="applicant1" class="applicant-tab active">
-
-                <!-- NAME ROW -->
                 <div class="form-grid-4">
                     <div class="form-group">
                         <label>Salutation</label>
@@ -62,196 +63,176 @@
                 </div>
 
                 <div class="form-row">
-                    <label>Occupation</label>
-                    <select>
-                        <option>Employed</option>
-                        <option>Self-Employed</option>
-                    </select>
+                    <div class="form-group">
+                        <label>Occupation</label>
+                        <select>
+                            <option>Employed</option>
+                            <option>Self-Employed</option>
+                        </select>
+                    </div>
 
-                    <label>Age</label>
-                    <input type="number">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number">
+                    </div>
                 </div>
-
-                <div class="form-row">
-                    <label>Mobile</label>
-                    <input type="text">
-
-                    <label>Email</label>
-                    <input type="email">
-
-                    <label>PAN</label>
-                    <input type="text">
-
-                    <label>Aadhaar</label>
-                    <input type="text">
-                </div>
-
-                <div class="form-row">
-                    <label>Address</label>
-                    <textarea></textarea>
-                </div>
-            </div>
-
-            <!-- ================= APPLICANT 2 ================= -->
-            <div id="applicant2" class="applicant-tab">
 
                 <div class="form-grid-4">
                     <div class="form-group">
-                        <label>Salutation</label>
-                        <select>
-                            <option>Mr.</option><option>Mrs.</option><option>Ms.</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>First Name</label>
+                        <label>Mobile</label>
                         <input type="text">
                     </div>
                     <div class="form-group">
-                        <label>Middle Name</label>
+                        <label>Email</label>
+                        <input type="email">
+                    </div>
+                    <div class="form-group">
+                        <label>PAN</label>
                         <input type="text">
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <label>Mobile</label>
-                    <input type="text">
-                    <label>Email</label>
-                    <input type="email">
-                </div>
-            </div>
-
-            <!-- ================= APPLICANT 3 ================= -->
-            <div id="applicant3" class="applicant-tab">
-
-                <div class="form-grid-4">
-                    <div class="form-group">
-                        <label>Salutation</label>
-                        <select>
-                            <option>Mr.</option><option>Mrs.</option><option>Ms.</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Middle Name</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Aadhaar</label>
                         <input type="text">
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <label>Mobile</label>
-                    <input type="text">
-                    <label>Email</label>
-                    <input type="email">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea></textarea>
+                    </div>
                 </div>
             </div>
-
         </fieldset>
 
-<!-- Payment Details -->
-<fieldset>
-    <legend style="color:#004080;">Payment Details</legend>
-
-    <div class="form-row">
-        <label for="bookingAmount">Booking Amount</label>
-        <input type="number" id="bookingAmount" name="bookingAmount" required />
-
-        <label for="paymentMode" style="margin-left: 40px;">Payment Mode</label>
-        <select id="paymentMode" name="paymentMode" required>
-            <option value="">Select</option>
-            <option>Cash</option>
-            <option>Cheque</option>
-            <option>Online Transfer</option>
-            <option>Demand Draft</option>
-        </select>
-    </div>
-
-    <div class="form-row">
-        <label for="chequeNo">Cheque/TRN No</label>
-        <input type="text" id="chequeNo" name="chequeNo" />
-
-        <label for="chequeDate" style="margin-left: 20px;">Cheque/TRN Date</label>
-        <input type="date" id="chequeDate" name="chequeDate" />
-    </div>
-
-    <div class="form-row">
-        <label for="bankName">Bank Name</label>
-        <select id="bankName" name="bankName">
-            <option value="">Select</option>
-            <option>Bank A</option>
-            <option>Bank B</option>
-            <option>Bank C</option>
-        </select>
-    </div>
-</fieldset>
+        <!-- Payment Details -->
         <fieldset>
-    <legend style="color:#004080;">Booking Calculation & Area Details</legend>
+            <legend>Payment Details</legend>
 
-<div class="form-row">
-    <label for="wing">Wing</label>
-    <select id="wing" name="wing" required></select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Booking Amount</label>
+                    <input type="number" required>
+                </div>
 
-    <label for="floor">Floor</label>
-    <select id="floor" name="floor" required></select>
+                <div class="form-group">
+                    <label>Payment Mode</label>
+                    <select required>
+                        <option value="">Select</option>
+                        <option>Cash</option>
+                        <option>Cheque</option>
+                        <option>Online Transfer</option>
+                        <option>Demand Draft</option>
+                    </select>
+                </div>
+            </div>
 
-    <label for="unitType">Unit Type</label>
-    <select id="unitType" name="unitType" required></select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Cheque / TRN No</label>
+                    <input type="text">
+                </div>
 
-    <label for="unitNumber">Unit Number</label>
-    <select id="unitNumber" name="unitNumber" required></select>
+                <div class="form-group">
+                    <label>Cheque / TRN Date</label>
+                    <input type="date">
+                </div>
+            </div>
 
-    <label for="carpet">Carpet</label>
-    <input type="number" id="carpet" name="carpet" readonly />
-</div>
-<div class="form-row">
-    <label for="agreementCost">Agreement Cost</label>
-    <input type="number" id="agreementCost" name="agreementCost" required />
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Bank Name</label>
+                    <select>
+                        <option value="">Select</option>
+                        <option>Bank A</option>
+                        <option>Bank B</option>
+                        <option>Bank C</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
 
-    <label for="gst">GST</label>
-    <input type="number" id="gst" name="gst" readonly />
+        <!-- Booking Calculation & Area Details -->
+        <fieldset>
+            <legend>Booking Calculation & Area Details</legend>
 
-    <label for="stampDuty">Stamp Duty</label>
-    <input type="number" id="stampDuty" name="stampDuty" readonly />
+            <div class="form-grid-5">
+                <div class="form-group">
+                    <label>Wing</label>
+                    <select></select>
+                </div>
+                <div class="form-group">
+                    <label>Floor</label>
+                    <select></select>
+                </div>
+                <div class="form-group">
+                    <label>Unit Type</label>
+                    <select></select>
+                </div>
+                <div class="form-group">
+                    <label>Unit Number</label>
+                    <select></select>
+                </div>
+                <div class="form-group">
+                    <label>Carpet</label>
+                    <input type="number" readonly>
+                </div>
+            </div>
 
-    <label for="registration">Registration</label>
-    <input type="number" id="registration" name="registration" readonly />
-</div>
-<div class="form-row">
-    <label for="furnitureCharges">Furniture Charges</label>
-    <input type="number" id="furnitureCharges" name="furnitureCharges" />
+            <div class="form-grid-4">
+                <div class="form-group">
+                    <label>Agreement Cost</label>
+                    <input type="number" required>
+                </div>
+                <div class="form-group">
+                    <label>GST</label>
+                    <input type="number" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Stamp Duty</label>
+                    <input type="number" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Registration</label>
+                    <input type="number" readonly>
+                </div>
+            </div>
 
-    <label for="actualPackage">Actual Package</label>
-    <input type="number" id="actualPackage" name="actualPackage" readonly />
+            <div class="form-grid-4">
+                <div class="form-group">
+                    <label>Furniture Charges</label>
+                    <input type="number">
+                </div>
+                <div class="form-group">
+                    <label>Actual Package</label>
+                    <input type="number" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Package Total</label>
+                    <input type="number" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Parking Type</label>
+                    <select></select>
+                </div>
+            </div>
 
-    <label for="packageTotal">Package Total</label>
-    <input type="number" id="packageTotal" name="packageTotal" readonly />
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Source</label>
+                    <input type="text">
+                </div>
+            </div>
+        </fieldset>
 
-    <label for="parkingType">Parking Type</label>
-    <select id="parkingType" name="parkingType"></select>
-</div>
-<div class="form-row">
-    <label for="source">Source</label>
-    <input type="text" id="source" name="source" />
-</div>
-</fieldset>
-        <!-- Buttons -->
         <div class="button-row">
-            <button class="save-btn">Save</button>
+            <button type="submit" class="save-btn">Save</button>
             <button type="button" class="close-btn">Close</button>
         </div>
 
     </form>
 </div>
+
 <script>
 function showApplicant(num, e) {
     document.querySelectorAll('.applicant-tab').forEach(t => t.classList.remove('active'));
