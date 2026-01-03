@@ -194,52 +194,67 @@
         </select>
     </div>
 </fieldset>
-<div class="form-row">
-    <label for="wing">Wing</label>
-    <select id="wing" name="wing" required></select>
+<fieldset>
+    <legend>Unit & Cost Details</legend>
 
-    <label for="floor">Floor</label>
-    <select id="floor" name="floor" required></select>
+    <div class="form-row">
+        <label for="wing">Wing</label>
+        <select id="wing" name="wing" required>
+            <option value="">Select Wing</option>
+        </select>
 
-    <label for="unitType">Unit Type</label>
-    <select id="unitType" name="unitType" required></select>
+        <label for="floor">Floor</label>
+        <select id="floor" name="floor" required>
+            <option value="">Select Floor</option>
+        </select>
 
-    <label for="unitNumber">Unit Number</label>
-    <select id="unitNumber" name="unitNumber" required></select>
+        <label for="unitNumber">Unit No</label>
+        <select id="unitNumber" name="unitNumber" required>
+            <option value="">Select Unit</option>
+        </select>
 
-    <label for="carpet">Carpet</label>
-    <input type="number" id="carpet" name="carpet" readonly />
-</div>
-<div class="form-row">
-    <label for="agreementCost">Agreement Cost</label>
-    <input type="number" id="agreementCost" name="agreementCost" required />
+        <label for="carpet">Carpet (sqft)</label>
+        <input type="number" id="carpet" name="carpet" readonly>
+    </div>
 
-    <label for="gst">GST</label>
-    <input type="number" id="gst" name="gst" readonly />
+    <div class="form-row">
+        <label for="agreementCost">Agreement Cost</label>
+        <input type="number" id="agreementCost" name="agreementCost" required>
 
-    <label for="stampDuty">Stamp Duty</label>
-    <input type="number" id="stampDuty" name="stampDuty" readonly />
+        <label for="gst">GST</label>
+        <input type="number" id="gst" name="gst" readonly>
 
-    <label for="registration">Registration</label>
-    <input type="number" id="registration" name="registration" readonly />
-</div>
-<div class="form-row">
-    <label for="furnitureCharges">Furniture Charges</label>
-    <input type="number" id="furnitureCharges" name="furnitureCharges" />
+        <label for="stampDuty">Stamp Duty</label>
+        <input type="number" id="stampDuty" name="stampDuty" readonly>
 
-    <label for="actualPackage">Actual Package</label>
-    <input type="number" id="actualPackage" name="actualPackage" readonly />
+        <label for="registration">Registration</label>
+        <input type="number" id="registration" name="registration" readonly>
+    </div>
 
-    <label for="packageTotal">Package Total</label>
-    <input type="number" id="packageTotal" name="packageTotal" readonly />
+    <div class="form-row">
+        <label for="furnitureCharges">Furniture Charges</label>
+        <input type="number" id="furnitureCharges" name="furnitureCharges" value="0">
 
-    <label for="parkingType">Parking Type</label>
-    <select id="parkingType" name="parkingType"></select>
-</div>
-<div class="form-row">
-    <label for="source">Source</label>
-    <input type="text" id="source" name="source" />
-</div>
+        <label for="actualPackage">Actual Package</label>
+        <input type="number" id="actualPackage" name="actualPackage" readonly>
+
+        <label for="packageTotal">Package Total</label>
+        <input type="number" id="packageTotal" name="packageTotal" readonly>
+
+        <label for="parkingType">Parking</label>
+        <select id="parkingType" name="parkingType">
+            <option value="">Select</option>
+            <option>Open</option>
+            <option>Covered</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="source">Source</label>
+        <input type="text" id="source" name="source">
+    </div>
+</fieldset>
+
 
         <!-- Buttons -->
         <div class="button-row">
@@ -250,13 +265,53 @@
     </form>
 </div>
 <script>
-function showApplicant(num, e) {
-    document.querySelectorAll('.applicant-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-buttons button').forEach(b => b.classList.remove('active'));
-    document.getElementById('applicant' + num).classList.add('active');
-    e.target.classList.add('active');
-}
+const wingSelect = document.getElementById("wing");
+const floorSelect = document.getElementById("floor");
+const unitSelect = document.getElementById("unitNumber");
+const carpetInput = document.getElementById("carpet");
+
+const wings = ["A", "B", "C", "D", "E", "F"];
+const floors = [1, 2, 3, 4, 5, 6, 7];
+
+// Example carpet mapping
+const carpetMap = {
+    "101": 650,
+    "102": 680,
+    "103": 720,
+    "104": 750,
+    "105": 800,
+    "106": 820,
+    "107": 850
+};
+
+// Load wings
+wings.forEach(w => {
+    wingSelect.add(new Option(w, w));
+});
+
+// Load floors
+floors.forEach(f => {
+    floorSelect.add(new Option(f, f));
+});
+
+// Load units when floor selected
+floorSelect.addEventListener("change", () => {
+    unitSelect.innerHTML = '<option value="">Select Unit</option>';
+    carpetInput.value = "";
+
+    for (let i = 1; i <= 7; i++) {
+        const unitNo = floorSelect.value + "0" + i; // 101–107, 201–207
+        unitSelect.add(new Option(unitNo, unitNo));
+    }
+});
+
+// Carpet auto-fill
+unitSelect.addEventListener("change", () => {
+    const baseUnit = "10" + unitSelect.value.slice(-1);
+    carpetInput.value = carpetMap[baseUnit] || "";
+});
 </script>
+
 
 </body>
 </html>
