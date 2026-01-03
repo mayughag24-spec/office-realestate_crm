@@ -93,54 +93,74 @@
         </fieldset>
 
         <!-- Unit & Cost -->
-        <fieldset>
-            <legend>Unit & Cost Details</legend>
+  <fieldset class="section-box">
+    <legend>Unit & Cost Details</legend>
 
-            <div class="form-row">
-                <label>Wing</label>
-                <select id="wing" required></select>
+    <div class="form-row">
+        <label for="wing">Wing</label>
+        <select id="wing" name="wing" required>
+            <option value="">Select</option>
+            <option>A</option><option>B</option><option>C</option>
+            <option>D</option><option>E</option><option>F</option>
+        </select>
 
-                <label>Floor</label>
-                <select id="floor" required></select>
+        <label for="floor">Floor</label>
+        <select id="floor" name="floor" required>
+            <option value="">Select</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+            <option>7</option>
+        </select>
 
-                <label>Unit No</label>
-                <select id="unitNumber" required></select>
+        <label for="unitNumber">Unit No</label>
+        <select id="unitNumber" name="unitNumber" required>
+            <option value="">Select</option>
+            <option>101</option><option>102</option><option>103</option>
+            <option>104</option><option>105</option><option>106</option>
+            <option>107</option>
+        </select>
 
-                <label>Carpet</label>
-                <input type="number" id="carpet" readonly>
-            </div>
+        <label for="carpet">Carpet</label>
+        <input type="number" id="carpet" name="carpet" readonly>
+    </div>
 
-            <div class="form-row">
-                <label>Agreement Cost</label>
-                <input type="number" id="agreementCost" required>
+    <div class="form-row">
+        <label>Agreement Cost</label>
+        <input type="number" name="agreementCost">
 
-                <label>GST</label>
-                <input type="number" id="gst" readonly>
+        <label>GST</label>
+        <input type="number" readonly>
 
-                <label>Stamp Duty</label>
-                <input type="number" id="stampDuty" readonly>
+        <label>Stamp Duty</label>
+        <input type="number" readonly>
 
-                <label>Registration</label>
-                <input type="number" id="registration" readonly>
-            </div>
+        <label>Registration</label>
+        <input type="number" readonly>
+    </div>
 
-            <div class="form-row">
-                <label>Furniture Charges</label>
-                <input type="number" id="furnitureCharges" value="0">
+    <div class="form-row">
+        <label>Furniture Charges</label>
+        <input type="number">
 
-                <label>Actual Package</label>
-                <input type="number" id="actualPackage" readonly>
+        <label>Actual Package</label>
+        <input type="number" readonly>
 
-                <label>Package Total</label>
-                <input type="number" id="packageTotal" readonly>
+        <label>Package Total</label>
+        <input type="number" readonly>
 
-                <label>Parking</label>
-                <select>
-                    <option>Open</option>
-                    <option>Covered</option>
-                </select>
-            </div>
-        </fieldset>
+        <label>Parking</label>
+        <select>
+            <option>Open</option>
+            <option>Covered</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Source</label>
+        <input type="text">
+    </div>
+</fieldset>
+
 
         <!-- Buttons -->
         <div class="button-row">
