@@ -12,11 +12,7 @@ def get_db():
         database="realestate_crm"
     )
 
-# ================= DASHBOARD =================
-@app.route("/")
-@app.route("/dashboard")
-def dashboard():
-    return render_template("dashboard.html")
+
 
 # ================= LEADS =================
 @app.route("/leads/add")
